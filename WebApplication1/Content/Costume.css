@@ -1,0 +1,43 @@
+﻿body {
+    font-family: Neuropolitical;
+    background: url('Fondo13.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+h1{
+    font-family: Neuropolitical;
+    color: #210202;     
+}
+#contenido{
+margin-top: -57px; /* la mitad del alto del objeto a centrat */
+margin-left: -87px; /* la mitad del ancho del objeto a centrar */
+position: absolute;
+top: 40%;
+left: 50%;
+width: 174px; /* ancho del objeto a centrar */
+height: 114px; /* alto del objeto a centrar */
+}
+.tabla{
+    width:100%;
+    height:100%;
+}
+.centrado{
+    color:white;
+    font-size: 11px;
+    text-align: center;  
+    margin: 5px 0 0 0;
+}
+.box-blue {
+    margin:0 0 10px;
+    overflow:hidden;
+    padding:5px;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border:1px solid rgba(255, 255 ,255, 0.1) !important;
+    -webkit-border-radius: 5px;
+    border-radius: 10px;
+}
+.box-blue:focus {
+    outline:0px;
+}
+input -webkit-autofill {
+    -webkit-box-shadow: 0 0 0px rgba(255, 255, 255, 0.5) !important white inset;
+}

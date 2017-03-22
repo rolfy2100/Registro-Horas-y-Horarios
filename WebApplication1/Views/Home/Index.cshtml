@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <title>Iniciar Sesión</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Costume.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="contenido">
+        <h1>AM Nativa</h1>
+            <form action="/Usuarios/DoLogin" method="post" autocomplete="off">
+                <table class="tabla">
+                    <tr>
+                        <td VALIGN="MIDDLE" ALIGN="CENTER"><a href="/Home/RegistrarLiquidador" class="centrado">Registrar Liquidador</a></td>
+                    </tr>
+                    <tr>
+                        <td VALIGN="MIDDLE" ALIGN="CENTER" ><input type="text" name="usuario" placeholder="usuario" autocomplete="off" class="box-blue"/></td>
+                    </tr> 
+                    <tr>
+                        <td VALIGN="MIDDLE" ALIGN="CENTER" ><input type="password" name="contraseña" placeholder="contraseña" autocomplete="off" class="box-blue"/></td>
+                    </tr>
+                    <tr>
+                        <td VALIGN="MIDDLE" ALIGN="CENTER"><input type="submit" value="IniciarSesion" class="btn-primary" id="color"/></td>
+                    </tr>
+                </table>
+            </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8"/>
+    <title>RegistrarLiquidador</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Agregar liquidador</h1>
+        <form action="/Home/AgregarLiquidador" method="post">
+            <div >
+                <label>Ingrese usuario del administrador: </label><input type="text" name="user" />
+            </div>
+            <div>
+                <label>Ingrese contraseña del administrador: </label><input type="password" name="contra" value="" />
+            </div>
+            <div>
+                <input type="text" name="nombres"  placeholder="Nombres"/>
+            </div>
+            <div>
+                <input type="text" name="apellidos" placeholder="Apellidos"/>
+            </div>
+            <div>
+                <input type="text" name="dni" placeholder="DNI"/>
+            </div>
+            <div>
+                <input type="text" name="fechanacimiento" placeholder="Ej. 02/05/90"/>
+            </div>
+            <div>
+                <input type="text" name="estadocivil" placeholder="Estado Civil"/>
+            </div>
+            <div>
+                <input type="text" name="direccion" placeholder="Ej. H. Yrigoyen 300"/>
+            </div>
+            <div>
+                <input type="text" name="mail" />
+            </div>
+            <div>
+                <input type="text" name="usuario" />
+            </div>
+            <div>
+                <input type="text" name="contraseña" />
+            </div>
+            <div>
+                <input type="text" name="imagen" />
+            </div>
+            <div>
+                <input type="submit" value="Agregar" class="btn btn-danger"/>
+            </div>
+               </form>
+    </div>
+</body>
+</html>

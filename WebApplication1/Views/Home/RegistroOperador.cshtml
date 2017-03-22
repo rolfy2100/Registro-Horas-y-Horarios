@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "~/views/shared/_layout_operador.cshtml";
+}
+
+
+    <div class="text-center"> 
+        <h1 class="text-center">Registro</h1>
+        <table> <!--Creo tabla para mostrar las horas trabajadas-->
+        
+            <tr>
+                <td><strong>Fecha</strong></td>
+                <td><strong>Horario entrada </strong></td>
+                <td><strong>Horario salida</strong></td>
+                <td><strong>Horas trabajadas</strong></td>
+                <td><strong>Total Horas</strong></td>
+           </tr>
+                 <!--Itero viewbag-->
+            @if (ViewBag.Registro != null)  
+            {
+                foreach (WebApplication16.Models.RegistroHorasHorarios registro in ViewBag.Registro)
+                {
+                <tr>
+                    <td>@registro.FechaEntrada</td>
+                    <td>@registro.HoraEntrada</td>
+                    <td>@registro.HoraSalida</td>
+                    <td>@registro.HorasTrabajadas</td>
+                </tr>
+                }
+            }
+        </table>
+    </div>

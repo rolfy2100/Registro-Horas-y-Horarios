@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" charset="utf-8" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/InicioOperador.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand glyphicon glyphicon-home" href="/Home/Home"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                <form action="/Home/RegistroOperador" method="post" id="form2">
+                    <ul class="nav navbar-nav">
+                        <li><input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden></li>
+                        <li><a href="#" id="href">Registro</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mensaje <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mensaje privado</a></li>
+                                <li><a href="#">Mensaje general</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </form>
+                <form class="navbar-form navbar-left" action="/Home/ConsultarRegistro">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Ingresar fecha" name="fechon">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Buscar</button>
+                </form>
+                <form action="@Url.Action("Salir","Usuarios")" method="post">
+                        <!--Operador-->
+                        <input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden>
+                        <!--Muestro fecha de entrada-->
+                        <input type="text" name="fechaentrada" id="fechaentrada" readonly="readonly" value="" class="lala aladerecha" hidden>
+                        <!--Muestro hora de entrada-->
+                        <input type="text" name="horaentrada" id="lala" readonly="readonly" value="" class="lala aladerecha" hidden>
+                        <!--Contador-->
+                        <input type="text" name="horastrabajadas" id="contar" value="" readonly="readonly" class="lala" hidden/>
+                        <!--Hora de salida-->
+                        <input type="text" name="horasalida" id="horasalida" class="lala" readonly="readonly" hidden />
+                        <!--Boton de deslogueo y finalizacion del conteo-->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>  <input type="submit" value="Salir" id="salir" />     </li>       
+                        </ul>
+                </form>    
+                </div><!-- /.navbar-collapse -->
+             </div><!-- /.container-fluid -->
+        </nav>
+
+             <div>
+        @RenderBody()
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Pagina.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"  charset="utf-8"/>
+    <title>MensajeSalida</title>
+    <link href="~/Content/MensajeSalida.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" id="entrasale"> 
+       @*foreach (WebApplication16.Models.Operadores usuario in ViewBag.Usuario)
+                {<h1 class="text-center">@usuario.Nombres </h1>}*@
+                <a class="btn btn-primary text-center" href="/Home/Index">Ingresar</a>
+                <!-- Contenido de esta pagina: nombre del operador, hora entrada, hora salida, horas trabajadas, un mensaje que diga "Disfruta el dia", opcion ingresar-->
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/MensajeSalida.js"></script>
+    </div>
+    </body>
+    </html>
