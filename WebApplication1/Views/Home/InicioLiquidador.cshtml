@@ -13,10 +13,15 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div> 
-        <a href="/Home/RegistroLiquidadorPablo"><h3>Pablo</h3></a>
+    <div>
+        @foreach (WebApplication16.Models.Operadores operadores in ViewBag.Operadores)
+        {
+            <a href="/Home/ConsultarRegistro"><h3>@operadores.Nombres @operadores.Apellidos</h3></a>
+        }
+
         <!--Tengo el nombre de cada operador, cada nombre es una lista de fecha, hora entrada, hora salida, horas trabajadas-->
         <!-- buscador, log out, y una opcion que se llame "agregar", donde va a poder ingresar los datos de un nuevo operador-->
     </div>
+
 </body>
 </html>

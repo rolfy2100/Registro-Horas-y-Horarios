@@ -11,7 +11,7 @@ namespace WebApplication1.Models
     {
         public void Agregar(Liquidador liquidador)
         {
-            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
@@ -33,11 +33,11 @@ namespace WebApplication1.Models
 
             conexion.Close();
         }
-        public List<Liquidador> Loguear()
+        public Liquidador Validar(string usuario, string contraseña)
         {
-            List<Liquidador> liquidador = new List<Liquidador>();
+            Liquidador liquidador = new Liquidador();
 
-            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
@@ -49,16 +49,50 @@ namespace WebApplication1.Models
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
-                Liquidador liquidador2 = new Liquidador();
-                liquidador2.Usuario = reader["Usuario"].ToString();
-                liquidador2.Contraseña = reader["Contraseña"].ToString();
-                liquidador.Add(liquidador2);
+                liquidador.Usuario = reader["Usuario"].ToString();
+                liquidador.Contraseña = reader["Contraseña"].ToString();
             }
             reader.Close();
 
             conexion.Close();
 
             return liquidador;
+        }
+
+        internal List<Operadores> Consultar()
+        {
+            List<Operadores> operadores = new List<Operadores>();
+
+
+            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
+            //2-nos conectamos
+            conexion.Open();
+            //3-creamos el objeto que nos permite escribir la sentencia
+            SqlCommand sentencia = conexion.CreateCommand();
+            //4-escribrimos la sentencia
+
+            sentencia.CommandText = "Select * from Operadores";
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
+                Operadores operadores2 = new Operadores(); 
+                operadores2.Nombres = reader["Nombres"].ToString();
+                operadores2.Apellidos = reader["Apellidos"].ToString();
+                operadores2.FechaNacimiento = reader["FechaNacimiento"].ToString();
+                operadores2.EstadoCivil = reader["EstadoCivil"].ToString();
+                operadores2.Direccion = reader["Direccion"].ToString();
+                operadores2.Mail = reader["Mail"].ToString();
+                operadores2.Imagen = reader["Imagen"].ToString();
+                operadores2.DNI = (int)reader["DNI"];
+                operadores2.Usuario = reader["Usuario"].ToString();
+                operadores2.Contraseña = reader["Contraseña"].ToString();
+                operadores.Add(operadores2);
+            }
+            reader.Close();
+
+            conexion.Close();
+
+            return operadores;
         }
     }
 }

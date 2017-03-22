@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width" charset="utf-8" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/InicioOperador.css" rel="stylesheet" />
-    @RenderSection("styles", required: false)
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -24,7 +23,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
                 <form action="/Home/RegistroOperador" method="post" id="form2">
                     <ul class="nav navbar-nav">
-                        <li><input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden></li>
+                        <li><input type="text" name="operador" readonly="readonly" id="usuario" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden></li>
                         <li><a href="#" id="href">Registro</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mensaje <span class="caret"></span></a>
@@ -60,6 +59,7 @@
                 </div><!-- /.navbar-collapse -->
              </div><!-- /.container-fluid -->
         </nav>
+    <input type="text" id="usuario" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).Nombres)" class="lala aladerecha" hidden>
 
              <div>
         @RenderBody()

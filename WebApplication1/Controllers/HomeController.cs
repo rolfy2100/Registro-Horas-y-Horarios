@@ -57,6 +57,14 @@ namespace WebApplication16.Controllers
             return View("InicioOperador");
         }
 
+        public ActionResult HomeLiquidador()
+        {
+            LiquidadorManager manager = new LiquidadorManager();
+            List<Operadores> operadores = manager.Consultar();
+            ViewBag.Operadores = operadores;
+
+            return View("InicioLiquidador");
+        }
         //Deslogueo, registro de horas trabajadas
 
         //Mostrar horas trabajadas en el perfil del operador

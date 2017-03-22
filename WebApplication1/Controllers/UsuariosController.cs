@@ -16,6 +16,9 @@ namespace WebApplication1.Controllers
         {
             OperadoresManager manager = new OperadoresManager();
             Operadores operadores2 = manager.Validar(usuario, contraseña);
+            LiquidadorManager manager2 = new LiquidadorManager();
+            Liquidador liquidador1 = manager2.Validar(usuario, contraseña);
+
             if (operadores2 != null)
             {
                 //ESTÁ BIEN
@@ -23,15 +26,18 @@ namespace WebApplication1.Controllers
             }
             else
             {
+                if (liquidador1 != null)
+                {
+                    return RedirectToAction("HomeLiquidador", "Home");
+                }
                 //EL USUARIO NO EXISTE O ESTA MAL LA CONTRASEÑA
                 TempData["Error"] = "El usuario no existe o está mal la contraseña";
             }
-
             return RedirectToAction("Home", "Home");
         }
 
 
-        public ActionResult Salir(int operador,string fechaentrada, string horaentrada, string horasalida, long horastrabajadas)
+        public ActionResult Salir(int operador,string fechaentrada, string horaentrada, string horasalida, int horastrabajadas)
         {
             RegistroHorasHorarios horashorarios = new RegistroHorasHorarios();
             RegistroHorasManager registrohoras = new RegistroHorasManager();
@@ -39,7 +45,7 @@ namespace WebApplication1.Controllers
             horashorarios.HoraEntrada = horaentrada;
             horashorarios.HoraSalida = horasalida;
             horashorarios.HorasTrabajadas = horastrabajadas;
-            registrohoras.AgregarRegistro(horashorarios, operador);
+            registrohoras.AgregarRegistro(horashorarios, operador); 
             ViewBag.Usuario = Session["UsuarioLogueado"];
             Session["UsuarioLogueado"] = null;
             return View("MensajeSalida");

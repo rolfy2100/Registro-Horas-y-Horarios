@@ -11,6 +11,6 @@ namespace WebApplication16.Models
         public string FechaEntrada { get; set; }
         public string HoraEntrada { get; set; }
         public string HoraSalida { get; set; }
-        public long HorasTrabajadas { get; set; }
+        public int HorasTrabajadas { get; set; }
     }
 }
