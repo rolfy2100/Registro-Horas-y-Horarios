@@ -241,6 +241,5 @@ C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\bin\Microso
 C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
 C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\Montenegro\Desktop\Proyecto\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb

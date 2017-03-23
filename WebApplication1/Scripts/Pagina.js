@@ -1,4 +1,4 @@
-﻿var usuario = document.getElementById('usuario').value;
+﻿var usuario = document.getElementById('usuario22').value;
 localStorage.setItem('usuario', usuario);
 
 //Registrar fecha de entrada

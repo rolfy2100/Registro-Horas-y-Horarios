@@ -223,6 +223,7 @@
     <Content Include="Content\InicioOperador.css" />
     <Content Include="Content\MensajeSalida.css" />
     <Content Include="Content\RegistrarLiquidador.css" />
+    <Content Include="Content\RegistrarOperador.css" />
     <Content Include="Content\RegistroOperador.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

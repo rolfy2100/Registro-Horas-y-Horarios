@@ -25,34 +25,37 @@ namespace WebApplication16.Controllers
 
         public ActionResult AgregarLiquidador(string user, string contra, string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
-            if (user=="jefa" && contra=="1234")
-            {
-                Liquidador liquidador = new Liquidador();
-                liquidador.Nombres = nombres;
-                liquidador.Apellidos = apellidos;
-                liquidador.DNI = dni;
-                liquidador.FechaNacimiento = fechanacimiento;
-                liquidador.EstadoCivil = estadocivil;
-                liquidador.Direccion = direccion;
-                liquidador.Mail = mail;
-                liquidador.Usuario = usuario;
-                liquidador.Contraseña = contraseña;
-                liquidador.Imagen = imagen;
 
-                LiquidadorManager manager = new LiquidadorManager();
-                manager.Agregar(liquidador);
-                return View("MensajeLiquidadorAgregado");
-            }
-            else
-            {
-                TempData["Error"] = "El usuario no existe ";
-                TempData["Error2"] = "o se ha accedido una contraseña invalida";
-                return RedirectToAction("RegistrarLiquidador");
-            }
-            
+            //if (user != null && contra != null && nombres != null && apellidos != null && fechanacimiento != null && estadocivil != null && direccion != null && direccion != null && mail != null && usuario != null && contraseña != null)
+            //{
+                if (user == "jefa" && contra == "1234")
+                {
+                    Liquidador liquidador = new Liquidador();
+                    liquidador.Nombres = nombres;
+                    liquidador.Apellidos = apellidos;
+                    liquidador.DNI = dni;
+                    liquidador.FechaNacimiento = fechanacimiento;
+                    liquidador.EstadoCivil = estadocivil;
+                    liquidador.Direccion = direccion;
+                    liquidador.Mail = mail;
+                    liquidador.Usuario = usuario;
+                    liquidador.Contraseña = contraseña;
+                    liquidador.Imagen = imagen;
+
+                    LiquidadorManager manager = new LiquidadorManager();
+                    manager.Agregar(liquidador);
+                    return View("MensajeLiquidadorAgregado");
+                }
+                else
+                {
+                    TempData["Error"] = "El usuario no existe ";
+                    TempData["Error2"] = "o se ha accedido una contraseña invalida";
+                    return RedirectToAction("RegistrarLiquidador");
+                }
+            //}            
         }
+        
         //Loguearse
-
         public ActionResult Home()
         {
             return View("InicioOperador");
