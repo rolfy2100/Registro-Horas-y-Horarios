@@ -25,7 +25,6 @@ namespace WebApplication16.Controllers
 
         public ActionResult AgregarLiquidador(string user, string contra, string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
-            
             if (user=="jefa" && contra=="1234")
             {
                 Liquidador liquidador = new Liquidador();
@@ -46,9 +45,11 @@ namespace WebApplication16.Controllers
             }
             else
             {
-                ViewBag.Error = "contraseña o usuario invalidos";
+                TempData["Error"] = "El usuario no existe ";
+                TempData["Error2"] = "o se ha accedido una contraseña invalida";
                 return RedirectToAction("RegistrarLiquidador");
             }
+            
         }
         //Loguearse
 

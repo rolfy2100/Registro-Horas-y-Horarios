@@ -11,7 +11,7 @@ if (fechita0 != "undefined" && fechita0 != "" && fechita0 != false && fechita0 !
 else {
     var fechaHora0 = new Date();
     var año0 = fechaHora0.getFullYear();
-    var mes0 =+ fechaHora0.getMonth() + 1;
+    var mes0 = fechaHora0.getMonth() + 1;
     var fecha0 = fechaHora0.getDate();
     var fechafinal0 = fecha0 + "/" + mes0 + "/" + año0;
     localStorage.setItem("fechafinal0", fechafinal0);
@@ -57,7 +57,7 @@ else{
     $("#salir").on("click", function () {
         var fechaHora3 = new Date();
         var año3 = fechaHora3.getFullYear();
-        var mes3 = fechaHora3.getMonth() * 1;
+        var mes3 = fechaHora3.getMonth() + 1;
         var fecha3 = fechaHora3.getDate();
         var horas3 = fechaHora3.getHours();
         var minutos3 = fechaHora3.getMinutes();

@@ -1,0 +1,20 @@
+﻿.margen{
+    margin-bottom: 10px;
+
+}
+.input{
+    padding: 4px 8px;
+    border-color:rgba(0,0,0,0.4);
+    width:100%;
+}
+.divmitad{
+    width:40%;
+}
+.inputmitad{
+    margin-top: 20px;
+     padding: 4px 8px;
+    border-color:rgba(0,0,0,0.4);
+    border-radius:1px;
+    width:50%;
+    height:40px;
+}

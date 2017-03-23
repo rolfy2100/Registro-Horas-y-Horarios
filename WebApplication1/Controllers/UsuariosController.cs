@@ -23,17 +23,21 @@ namespace WebApplication1.Controllers
             {
                 //ESTÁ BIEN
                 Session["UsuarioLogueado"] = operadores2;
+                return RedirectToAction("Home", "Home");
             }
             else
             {
-                if (liquidador1 != null)
+                if (liquidador1 != null && liquidador1.DNI != 0) 
                 {
                     return RedirectToAction("HomeLiquidador", "Home");
                 }
-                //EL USUARIO NO EXISTE O ESTA MAL LA CONTRASEÑA
-                TempData["Error"] = "El usuario no existe o está mal la contraseña";
+                else
+                { 
+                    //EL USUARIO NO EXISTE O ESTA MAL LA CONTRASEÑA
+                    TempData["Error"] = "El usuario no existe o se ha accedido una contraseña invalida";
+                    return RedirectToAction("Index","Home");
+                }
             }
-            return RedirectToAction("Home", "Home");
         }
 
 
