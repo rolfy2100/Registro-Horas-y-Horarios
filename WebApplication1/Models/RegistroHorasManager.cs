@@ -47,11 +47,13 @@ namespace WebApplication1.Models
         SqlDataReader reader = sentencia.ExecuteReader();
         while (reader.Read()) //mientras haya un registro para leer
         {
+
             RegistroHorasHorarios registrohoras2 = new RegistroHorasHorarios();
             registrohoras2.FechaEntrada = reader["FechaEntrada"].ToString();
             registrohoras2.HoraEntrada = reader["HoraEntrada"].ToString();
             registrohoras2.HoraSalida = reader["HoraSalida"].ToString();
             registrohoras2.HorasTrabajadas = (int)reader["HorasTrabajadas"];
+            
             registrohoras.Add(registrohoras2);
         }
         reader.Close();

@@ -1,5 +1,5 @@
-﻿
-@{
+﻿@{
+      
     Layout = "~/views/shared/_layout_operador.cshtml";
 }
 
@@ -20,13 +20,13 @@
             {
                 foreach (WebApplication16.Models.RegistroHorasHorarios registro in ViewBag.Registro)
                 {
-                <tr>
-                    <td>@registro.FechaEntrada</td>
-                    <td>@registro.HoraEntrada</td>
-                    <td>@registro.HoraSalida</td>
-                    <td>@registro.HorasTrabajadas</td>
-                </tr>
-                }
-            }
+                    <tr>
+                        <td>@registro.FechaEntrada</td>
+                        <td>@registro.HoraEntrada</td>
+                        <td>@registro.HoraSalida</td>
+                        <td>@foreach (string TrabajoTotal in ViewBag.Trabajadas){@TrabajoTotal} </td>
+                    </tr>
+                 }
+            }    
         </table>
     </div>

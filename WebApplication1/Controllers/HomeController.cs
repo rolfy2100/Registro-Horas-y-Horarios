@@ -77,6 +77,24 @@ namespace WebApplication16.Controllers
             RegistroHorasManager manager = new RegistroHorasManager();
             List<RegistroHorasHorarios> registro = manager.ConsultarTodos(operador);
             ViewBag.Registro = registro;
+
+            List<string> TrabajoTotal = new List<string>();
+            foreach (WebApplication16.Models.RegistroHorasHorarios registro2 in ViewBag.Registro)
+            {
+                var segTotales = registro2.HorasTrabajadas % 60;
+                var min = registro2.HorasTrabajadas / 60;
+                var minTotales = min % 60;
+                var horasTotales = min / 60;
+                string segTotalFinal = segTotales.ToString();
+                string minTotalFinal = minTotales.ToString();
+                string horaTotalFinal = horasTotales.ToString();
+                if (horasTotales < 10) { horaTotalFinal = "0" + horasTotales.ToString(); }
+                if (minTotales < 10) { minTotalFinal = "0" + minTotales; }
+                if (segTotales < 10) { segTotalFinal = "0" + segTotales; }
+                var trabajadas = horaTotalFinal + ":" + minTotalFinal + ":" + segTotalFinal;
+                TrabajoTotal.Add(trabajadas);
+            }
+            ViewBag.Trabajadas = TrabajoTotal;
             return View();
         }
 
@@ -109,8 +127,15 @@ namespace WebApplication16.Controllers
             RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
             RegistroHorasManager manager = new RegistroHorasManager();
             manager.Consultar(fechon);
-
             ViewBag.Registro = registroshoras1;
+            foreach (WebApplication16.Models.RegistroHorasHorarios registro in ViewBag.Registro)
+            {
+               var segTotales = registro.HorasTrabajadas % 60;
+               var min = registro.HorasTrabajadas / 60;
+               var minTotales = min % 60;
+               var horasTotales = min / 60;
+               ViewBag.Trabajadas = horasTotales + ":" + minTotales + ":" + segTotales;
+            }
 
 
             return View("RegistroOperador");
