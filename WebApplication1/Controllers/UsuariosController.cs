@@ -41,13 +41,14 @@ namespace WebApplication1.Controllers
         }
 
 
-        public ActionResult Salir(int operador,string fechaentrada, string horaentrada, string horasalida, int horastrabajadas)
+        public ActionResult Salir(int operador, string fechaentrada, string horaentrada, string horasalida, string horastrabajadas, int contador)
         {
             RegistroHorasHorarios horashorarios = new RegistroHorasHorarios();
             RegistroHorasManager registrohoras = new RegistroHorasManager();
             horashorarios.FechaEntrada = fechaentrada;
             horashorarios.HoraEntrada = horaentrada;
             horashorarios.HoraSalida = horasalida;
+            horashorarios.Conteo = contador;
             horashorarios.HorasTrabajadas = horastrabajadas;
             registrohoras.AgregarRegistro(horashorarios, operador); 
             ViewBag.Usuario = Session["UsuarioLogueado"];

@@ -76,25 +76,38 @@ namespace WebApplication16.Controllers
         {
             RegistroHorasManager manager = new RegistroHorasManager();
             List<RegistroHorasHorarios> registro = manager.ConsultarTodos(operador);
-            ViewBag.Registro = registro;
-
-            List<string> TrabajoTotal = new List<string>();
-            foreach (WebApplication16.Models.RegistroHorasHorarios registro2 in ViewBag.Registro)
+            int segtotales = 0;
+            foreach(RegistroHorasHorarios registro1 in registro)
             {
-                var segTotales = registro2.HorasTrabajadas % 60;
-                var min = registro2.HorasTrabajadas / 60;
-                var minTotales = min % 60;
-                var horasTotales = min / 60;
-                string segTotalFinal = segTotales.ToString();
-                string minTotalFinal = minTotales.ToString();
-                string horaTotalFinal = horasTotales.ToString();
-                if (horasTotales < 10) { horaTotalFinal = "0" + horasTotales.ToString(); }
-                if (minTotales < 10) { minTotalFinal = "0" + minTotales; }
-                if (segTotales < 10) { segTotalFinal = "0" + segTotales; }
-                var trabajadas = horaTotalFinal + ":" + minTotalFinal + ":" + segTotalFinal;
-                TrabajoTotal.Add(trabajadas);
+                segtotales = segtotales + registro1.Conteo;
             }
-            ViewBag.Trabajadas = TrabajoTotal;
+
+            int seg = segtotales % 60;
+            int mininter = segtotales / 60;
+            int min = mininter % 60;
+            int hor = mininter / 60;
+            if (hor < 1)
+            {
+                hor = 0;
+            }
+            if (min < 1)
+            {
+                min = 0;
+            }
+
+            string hor1 = null;
+            string min1 = null;
+            string seg1 = null;
+            //Agrego un 0 al frente de los valores de solo un digito
+            if (hor < 10) {hor1 = '0' + hor.ToString(); }
+            if (min < 10) {min1 = '0' + min.ToString(); }
+            if (seg < 10) {seg1 = '0' + seg.ToString(); }
+
+
+            //Asi se va a mostrar las horas trabajadas en la vista
+            string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
+            ViewBag.TrabajoTotal = horastrabajadas;
+            ViewBag.Registro = registro;
             return View();
         }
 
@@ -117,7 +130,6 @@ namespace WebApplication16.Controllers
             operadores.Usuario = usuario;
             operadores.Contraseña = contraseña;
             operadores.Imagen = imagen;
-
             OperadoresManager manager = new OperadoresManager();
             manager.Agregar(operadores);
             return View("MensajeOperadorAgregado");
@@ -128,16 +140,6 @@ namespace WebApplication16.Controllers
             RegistroHorasManager manager = new RegistroHorasManager();
             manager.Consultar(fechon);
             ViewBag.Registro = registroshoras1;
-            foreach (WebApplication16.Models.RegistroHorasHorarios registro in ViewBag.Registro)
-            {
-               var segTotales = registro.HorasTrabajadas % 60;
-               var min = registro.HorasTrabajadas / 60;
-               var minTotales = min % 60;
-               var horasTotales = min / 60;
-               ViewBag.Trabajadas = horasTotales + ":" + minTotales + ":" + segTotales;
-            }
-
-
             return View("RegistroOperador");
         }
     }

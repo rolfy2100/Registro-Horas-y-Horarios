@@ -16,17 +16,28 @@
                 <td><strong>Total Horas</strong></td>
            </tr>
                  <!--Itero viewbag-->
-            @if (ViewBag.Registro != null)  
+            @if (ViewBag.Registro != null)
             {
-                foreach (WebApplication16.Models.RegistroHorasHorarios registro in ViewBag.Registro)
+                foreach (WebApplication16.Models.RegistroHorasHorarios registro in (ViewBag.Registro)) 
                 {
                     <tr>
+
                         <td>@registro.FechaEntrada</td>
                         <td>@registro.HoraEntrada</td>
                         <td>@registro.HoraSalida</td>
-                        <td>@foreach (string TrabajoTotal in ViewBag.Trabajadas){@TrabajoTotal} </td>
+                        <td>@registro.HorasTrabajadas</td>
                     </tr>
-                 }
+                }
             }    
+       
+                <tr>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@if (ViewBag.TrabajoTotal != null){foreach (var trabajo in ViewBag.TrabajoTotal){@trabajo}}</td>
+                </tr>
+       
         </table>
     </div>

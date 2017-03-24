@@ -17,12 +17,13 @@ namespace WebApplication1.Models
             //3-creamos el objeto que nos permite escribir la sentencia
             SqlCommand sentencia = conexion.CreateCommand();
             //4-escribrimos la sentencia
-            sentencia.CommandText = "insert into RegistroHorasHorarios (Operador, FechaEntrada, HoraEntrada, HoraSalida, HorasTrabajadas) VALUES (@Operador, @FechaEntrada, @HoraEntrada, @HoraSalida, @HorasTrabajadas)";
+            sentencia.CommandText = "insert into RegistroHorasHorarios (Operador, FechaEntrada, HoraEntrada, HoraSalida, HorasTrabajadas, Conteo) VALUES (@Operador, @FechaEntrada, @HoraEntrada, @HoraSalida, @HorasTrabajadas, @Conteo)";
             sentencia.Parameters.AddWithValue("@Operador", operador);
             sentencia.Parameters.AddWithValue("@FechaEntrada", horashorarios.FechaEntrada);
             sentencia.Parameters.AddWithValue("@HoraEntrada", horashorarios.HoraEntrada);
             sentencia.Parameters.AddWithValue("@HoraSalida", horashorarios.HoraSalida);
             sentencia.Parameters.AddWithValue("@HorasTrabajadas", horashorarios.HorasTrabajadas);
+            sentencia.Parameters.AddWithValue("@Conteo", horashorarios.Conteo);
 
             sentencia.ExecuteNonQuery();
 
@@ -52,7 +53,8 @@ namespace WebApplication1.Models
             registrohoras2.FechaEntrada = reader["FechaEntrada"].ToString();
             registrohoras2.HoraEntrada = reader["HoraEntrada"].ToString();
             registrohoras2.HoraSalida = reader["HoraSalida"].ToString();
-            registrohoras2.HorasTrabajadas = (int)reader["HorasTrabajadas"];
+            registrohoras2.Conteo = (int)reader["Conteo"];
+            registrohoras2.HorasTrabajadas = reader["HorasTrabajadas"].ToString();
             
             registrohoras.Add(registrohoras2);
         }
@@ -77,11 +79,12 @@ namespace WebApplication1.Models
             while (reader.Read()) //mientras haya un registro para leer
             {
                 RegistroHorasHorarios registrohoras2 = new RegistroHorasHorarios();
-                registrohoras2.Operador = (Operadores)reader["Operador"];
                 registrohoras2.FechaEntrada = reader["FechaEntrada"].ToString();
                 registrohoras2.HoraEntrada = reader["HoraEntrada"].ToString();
                 registrohoras2.HoraSalida = reader["HoraSalida"].ToString();
-                registrohoras2.HorasTrabajadas = (int)reader["HorasTrabajadas"];
+                registrohoras2.Conteo = (int)reader["Conteo"];
+                registrohoras2.HorasTrabajadas = reader["HorasTrabajadas"].ToString();
+
                 registrohoras1.Add(registrohoras2);
             }
             reader.Close();
