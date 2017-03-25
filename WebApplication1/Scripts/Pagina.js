@@ -5,6 +5,7 @@
     if (fechita0 != "undefined" && fechita0 != "" && fechita0 != false && fechita0 != null) {
         document.getElementById("fechaentrada").value = fechita0;
 
+
     }
     else {
         var fechaHora0 = new Date();
@@ -22,6 +23,9 @@
     {
         document.getElementById("lala").value = horita;
 
+        var horas = parseInt(localStorage.getItem("horas"));
+        var minutos = parseInt(localStorage.getItem("minutos"));
+        var segundos = parseInt(localStorage.getItem("segundos"));
     }
     else{
             var fechaHora = new Date();
@@ -32,6 +36,10 @@
             var horas1 = horas;
             var minutos1 = minutos;
             var segundos1 = segundos;
+
+            localStorage.setItem("horas", horas);
+            localStorage.setItem("minutos", minutos);
+            localStorage.setItem("segundos", segundos);
 
             if (horas < 10) { var horas1 = '0' + horas1; }
             if (minutos < 10) {var minutos1 = '0' + minutos1; }
@@ -80,7 +88,14 @@
         //Paso a minutos y horas el tiempo trabajado
         var seg = segtrabajados % 60;
         var mininter = segtrabajados / 60;
+        if (mininter > 60)
+        {
         var min = mininter % 60;
+        }
+        else
+        {
+         var min = 0;
+        }
         var hor = mininter / 60;
         if (hor < 1)
         {
@@ -105,13 +120,16 @@
         if (segundos3 < 10) { var segundos3 = '0' + segundos3; }
 
         var usuario = document.getElementById('usuario22').value;
+        var horaentrada = localStorage.getItem("horariofinal2");
         document.getElementById("contar").value = segtrabajados;
         document.getElementById("horastrabajadas").value = horastrabajadas;
         document.getElementById("horasalida").value =  horas3 + ':' + minutos3 + ':' + segundos3;
-        localStorage.setItem("entrasalida", 'Trabajaste desde' + " " + horariofinal1 + " " + 'hasta' + " " + horas3 + ":" + minutos3 + ":" + segundos3);
+        localStorage.setItem("entrasalida", 'Trabajaste desde' + " " + horaentrada + " " + 'hasta' + " " + horas3 + ":" + minutos3 + ":" + segundos3);
         localStorage.setItem('usuario', usuario);
         localStorage.removeItem("fechafinal0");
         localStorage.removeItem("horariofinal2");
+        localStorage.removeItem("horas");
+        localStorage.removeItem("minutos")
         localStorage.removeItem("segundos");
         //clearInterval(temporizador);
     })
