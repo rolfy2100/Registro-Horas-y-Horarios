@@ -138,8 +138,39 @@ namespace WebApplication16.Controllers
         {
             RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
             RegistroHorasManager manager = new RegistroHorasManager();
-            manager.Consultar(fechon);
-            ViewBag.Registro = registroshoras1;
+            List<RegistroHorasHorarios> registro = manager.Consultar(fechon);
+            int segtotales = 0;
+            foreach (RegistroHorasHorarios registro1 in registro)
+            {
+                segtotales = segtotales + registro1.Conteo;
+            }
+
+            int seg = segtotales % 60;
+            int mininter = segtotales / 60;
+            int min = mininter % 60;
+            int hor = mininter / 60;
+            if (hor < 1)
+            {
+                hor = 0;
+            }
+            if (min < 1)
+            {
+                min = 0;
+            }
+
+            string hor1 = hor.ToString();
+            string min1 = min.ToString();
+            string seg1 = seg.ToString();
+            //Agrego un 0 al frente de los valores de solo un digito
+            if (hor < 10) { hor1 = '0' + hor.ToString(); }
+            if (min < 10) { min1 = '0' + min.ToString(); }
+            if (seg < 10) { seg1 = '0' + seg.ToString(); }
+
+            //Asi se va a mostrar las horas trabajadas en la vista
+            string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
+
+            ViewBag.TrabajoTotal = horastrabajadas;
+            ViewBag.Registro = registro;
             return View("RegistroOperador");
         }
     }

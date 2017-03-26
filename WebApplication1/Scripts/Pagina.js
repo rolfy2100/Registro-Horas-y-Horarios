@@ -124,7 +124,7 @@
         document.getElementById("contar").value = segtrabajados;
         document.getElementById("horastrabajadas").value = horastrabajadas;
         document.getElementById("horasalida").value =  horas3 + ':' + minutos3 + ':' + segundos3;
-        localStorage.setItem("entrasalida", 'Trabajaste desde' + " " + horaentrada + " " + 'hasta' + " " + horas3 + ":" + minutos3 + ":" + segundos3);
+        localStorage.setItem("entrasalida", 'Trabajaste un total de ' + horastrabajadas);
         localStorage.setItem('usuario', usuario);
         localStorage.removeItem("fechafinal0");
         localStorage.removeItem("horariofinal2");
