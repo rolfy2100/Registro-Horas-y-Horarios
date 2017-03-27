@@ -16,21 +16,20 @@
     <div class="col-md-6 col-sm-10 col-md-offset-3">
         <div class="margen col-md-10 col-sm-10"><h1 class="text-center">Crear Liquidador</h1></div>
         <div class="margen col-md-8 col-sm-8 col-md-offset-1 text-center" ><p>El unico campo opcional es la imagen del perfil, todos los otros campos son obligatorios. Sin el usuario y la contraseña del administrador no se podra agregar un liquidador</p></div>
-        <form action="/Home/AgregarLiquidador" method="post">
+        <form action="/Home/AgregarLiquidador" method="post" id="submit">
             <div class="margen col-md-5">
-                <label>Ingrese usuario del administrador</label>
+                <label>Ingrese usuario del adminin</label>
                 <input type="text" name="user" class="input" /><h5 id="error">@TempData["Error"]</h5>
             </div>
-            <div class="col-md-5 col-sm-5">
-                <label>Ingrese contraseña del administrador</label>
+            <div class="margen col-md-5 col-sm-5">
+                <label>Ingrese contraseña del admin</label>
                 <input type="password" name="contra" value="" class="input"/><h5 id="error">@TempData["Error2"]</h5>  
             </div>
-            <div class="margen col-md-10 col-sm-10">
+            <div class="margen col-md-10 col-sm-10" id="nombres">
                 <label>Nombres</label>
                 <input type="text" name="nombres"  placeholder="Nombres" class="margen input"/>
             </div>
             <div class="margen col-md-10 col-sm-10">
-                <h5 id="error">@TempData["Error3"]</h5>  
                 <label>Apellidos</label>
                 <input type="text" name="apellidos" placeholder="Apellidos" class="margen input"/>
             </div>
@@ -50,11 +49,13 @@
                 <label>Provincia</label>
                 <input type="text" name="provincia" class="margen input" />
             </div>
-            <div class="margen col-md-5 col-sm-5">
+            <div class="margen col-md-5 col-sm-5" id="estadocivil">
+                <h5 id="error2" hidden></h5>
                 <label>Estado Civil</label>
                 <input type="text" name="estadocivil" placeholder="soltero o casado" class="margen input"/>
             </div>
             <div class="margen col-md-5 col-sm-5">
+                <h5 id="error5" hidden></h5>
                 <label>Direccion</label>
                 <input type="text" name="direccion" placeholder="Ej. H. Yrigoyen 300" class="margen input"/>
             </div>
@@ -79,5 +80,7 @@
             </div>
                </form>
     </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/RegistrarLiquidador.js"></script>
 </body>
 </html>

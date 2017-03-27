@@ -51,8 +51,7 @@ namespace WebApplication16.Controllers
                     if (user == "jefa" && contra == "1234")
                     {
                         TempData["Error3"] = "Todos los campos son obligatorios";
-                        return RedirectToAction("RegistrarLiquidador");
-                   
+                        return RedirectToAction("RegistrarLiquidador");                  
                     }
                     else
                     {
