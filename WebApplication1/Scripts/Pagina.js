@@ -63,7 +63,7 @@
 
  
         //Paso a segundos hora entra y hora salida
-        if (horas3 => horas)
+        if (horas3 >= horas)
         {
             var horasegout = horas3 * 3600;
             var minsegout = minutos3 * 60;
@@ -88,15 +88,10 @@
         //Paso a minutos y horas el tiempo trabajado
         var seg = segtrabajados % 60;
         var mininter = segtrabajados / 60;
-        if (mininter > 60)
-        {
         var min = mininter % 60;
-        }
-        else
-        {
-         var min = 0;
-        }
+        min = Math.floor(min);
         var hor = mininter / 60;
+        hor = Math.floor(hor);
         if (hor < 1)
         {
             hor = 0;

@@ -34,8 +34,9 @@
                         </li>
                     </ul>
                 </form>
-                <form class="navbar-form navbar-left" action="/Home/ConsultarRegistro">
+                <form class="navbar-form navbar-left" action="/Home/ConsultarRegistroOperador">
                     <div class="form-group">
+                        <input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden>
                         <input type="text" class="form-control" placeholder="Ingresar fecha" name="fechon">
                     </div>
                     <button type="submit" class="btn btn-danger">Buscar</button>

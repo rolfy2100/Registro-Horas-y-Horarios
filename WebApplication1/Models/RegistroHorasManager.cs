@@ -29,42 +29,42 @@ namespace WebApplication1.Models
 
             conexion.Close();
         }
-    
+
         public List<RegistroHorasHorarios> ConsultarTodos(int operador)
         {
 
-        List<RegistroHorasHorarios> registrohoras = new List<RegistroHorasHorarios>();
+            List<RegistroHorasHorarios> registrohoras = new List<RegistroHorasHorarios>();
 
-        SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
-        //2-nos conectamos
-        conexion.Open();
-        //3-creamos el objeto que nos permite escribir la sentencia
-        SqlCommand sentencia = conexion.CreateCommand();
-        //4-escribrimos la sentencia
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            //2-nos conectamos
+            conexion.Open();
+            //3-creamos el objeto que nos permite escribir la sentencia
+            SqlCommand sentencia = conexion.CreateCommand();
+            //4-escribrimos la sentencia
 
-        sentencia.CommandText = "Select * from RegistroHorasHorarios where Operador = @Operador";
+            sentencia.CommandText = "Select * from RegistroHorasHorarios where Operador = @Operador";
             sentencia.Parameters.AddWithValue("@Operador", operador);
 
-        SqlDataReader reader = sentencia.ExecuteReader();
-        while (reader.Read()) //mientras haya un registro para leer
-        {
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
 
-            RegistroHorasHorarios registrohoras2 = new RegistroHorasHorarios();
-            registrohoras2.FechaEntrada = reader["FechaEntrada"].ToString();
-            registrohoras2.HoraEntrada = reader["HoraEntrada"].ToString();
-            registrohoras2.HoraSalida = reader["HoraSalida"].ToString();
-            registrohoras2.Conteo = (int)reader["Conteo"];
-            registrohoras2.HorasTrabajadas = reader["HorasTrabajadas"].ToString();
-            
-            registrohoras.Add(registrohoras2);
+                RegistroHorasHorarios registrohoras2 = new RegistroHorasHorarios();
+                registrohoras2.FechaEntrada = reader["FechaEntrada"].ToString();
+                registrohoras2.HoraEntrada = reader["HoraEntrada"].ToString();
+                registrohoras2.HoraSalida = reader["HoraSalida"].ToString();
+                registrohoras2.Conteo = (int)reader["Conteo"];
+                registrohoras2.HorasTrabajadas = reader["HorasTrabajadas"].ToString();
+
+                registrohoras.Add(registrohoras2);
+            }
+            reader.Close();
+
+            conexion.Close();
+
+            return registrohoras;
         }
-        reader.Close();
-
-        conexion.Close();
-
-        return registrohoras;
-        }
-        public List<RegistroHorasHorarios> Consultar(string fechon)
+        public List<RegistroHorasHorarios> ConsultarOperador(string fechon, int operador)
         {
             List<RegistroHorasHorarios> registrohoras1 = new List<RegistroHorasHorarios>();
             SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
@@ -73,7 +73,37 @@ namespace WebApplication1.Models
             //3-creamos el objeto que nos permite escribir la sentencia
             SqlCommand sentencia = conexion.CreateCommand();
             //4-escribrimos la sentencia
-            sentencia.CommandText = "Select * from RegistroHorasHorarios where FechaEntrada = '" + fechon  + "'";
+            sentencia.CommandText = "Select * from RegistroHorasHorarios where FechaEntrada = '" + fechon + "' and Operador = '" + operador + "'";
+
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
+                RegistroHorasHorarios registrohoras2 = new RegistroHorasHorarios();
+                registrohoras2.FechaEntrada = reader["FechaEntrada"].ToString();
+                registrohoras2.HoraEntrada = reader["HoraEntrada"].ToString();
+                registrohoras2.HoraSalida = reader["HoraSalida"].ToString();
+                registrohoras2.Conteo = (int)reader["Conteo"];
+                registrohoras2.HorasTrabajadas = reader["HorasTrabajadas"].ToString();
+
+                registrohoras1.Add(registrohoras2);
+            }
+            reader.Close();
+
+            conexion.Close();
+
+            return registrohoras1;
+        }
+
+        public List<RegistroHorasHorarios> ConsultarLiquidador(string fechon)
+        {
+            List<RegistroHorasHorarios> registrohoras1 = new List<RegistroHorasHorarios>();
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            //2-nos conectamos
+            conexion.Open();
+            //3-creamos el objeto que nos permite escribir la sentencia
+            SqlCommand sentencia = conexion.CreateCommand();
+            //4-escribrimos la sentencia
+            sentencia.CommandText = "Select * from RegistroHorasHorarios where FechaEntrada = '" + fechon + "'";
 
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
