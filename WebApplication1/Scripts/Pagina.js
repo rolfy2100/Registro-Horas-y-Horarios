@@ -144,4 +144,7 @@
         window.onhashchange = function () { window.location.hash = "no-back-button"; }
     }
     deshabilitaRetroceso();
-
+    function error() {
+        $("#error").slideUp(10000);
+    }
+    error();

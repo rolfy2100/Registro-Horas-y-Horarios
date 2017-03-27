@@ -37,10 +37,12 @@
                 <form class="navbar-form navbar-left" action="/Home/ConsultarRegistroOperador">
                     <div class="form-group">
                         <input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden>
-                        <input type="text" class="form-control" placeholder="Ingresar fecha" name="fechon">
+                        <input type="text" class="form-control" placeholder="Ingresar fecha" value="" name="fechon">
                     </div>
                     <button type="submit" class="btn btn-danger">Buscar</button>
+
                 </form>
+                <h5 class="error navbar-form navbar-left" id="error"><i>@TempData["Error3"]</i></h5>
                 <form action="@Url.Action("Salir","Usuarios")" method="post">
                         <!--Operador-->
                         <input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden>
