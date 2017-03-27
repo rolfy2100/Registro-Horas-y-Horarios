@@ -26,8 +26,8 @@ namespace WebApplication16.Controllers
         public ActionResult AgregarLiquidador(string user, string contra, string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
 
-            //if (user != null && contra != null && nombres != null && apellidos != null && fechanacimiento != null && estadocivil != null && direccion != null && direccion != null && mail != null && usuario != null && contraseña != null)
-            //{
+            if (user != null && contra != null && nombres != null && apellidos != null && fechanacimiento != null && estadocivil != null && direccion != null && direccion != null && mail != null && usuario != null && contraseña != null)
+            {
                 if (user == "jefa" && contra == "1234")
                 {
                     Liquidador liquidador = new Liquidador();
@@ -48,13 +48,23 @@ namespace WebApplication16.Controllers
                 }
                 else
                 {
-                    TempData["Error"] = "El usuario no existe ";
-                    TempData["Error2"] = "o se ha accedido una contraseña invalida";
-                    return RedirectToAction("RegistrarLiquidador");
+                    if (user == "jefa" && contra == "1234")
+                    {
+                        TempData["Error3"] = "Todos los campos son obligatorios";
+                        return RedirectToAction("RegistrarLiquidador");
+                   
+                    }
+                    else
+                    {
+                        TempData["Error"] = "El usuario no existe ";
+                        TempData["Error2"] = "o se ha accedido una contraseña invalida";
+                        return RedirectToAction("RegistrarLiquidador");
+                    }
                 }
-            //}            
+            }
+            return RedirectToAction("RegistrarLiquidador");
         }
-        
+
         //Loguearse
         public ActionResult Home()
         {

@@ -19,17 +19,18 @@
         <form action="/Home/AgregarLiquidador" method="post">
             <div class="margen col-md-5">
                 <label>Ingrese usuario del administrador</label>
-                <input type="text" name="user" class="input" />@TempData["Error"]
+                <input type="text" name="user" class="input" /><h5 id="error">@TempData["Error"]</h5>
             </div>
             <div class="col-md-5 col-sm-5">
                 <label>Ingrese contraseña del administrador</label>
-                <input type="password" name="contra" value="" class="input"/>  @TempData["Error2"]
+                <input type="password" name="contra" value="" class="input"/><h5 id="error">@TempData["Error2"]</h5>  
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Nombres</label>
                 <input type="text" name="nombres"  placeholder="Nombres" class="margen input"/>
             </div>
             <div class="margen col-md-10 col-sm-10">
+                <h5 id="error">@TempData["Error3"]</h5>  
                 <label>Apellidos</label>
                 <input type="text" name="apellidos" placeholder="Apellidos" class="margen input"/>
             </div>
