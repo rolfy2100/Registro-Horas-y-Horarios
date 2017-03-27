@@ -52,7 +52,10 @@
             <div class="margen col-md-5 col-sm-5" id="estadocivil">
                 <h5 id="error2" hidden></h5>
                 <label>Estado Civil</label>
-                <input type="text" name="estadocivil" placeholder="soltero o casado" class="margen input"/>
+                <select type="text" name="estadocivil" class="margen input">
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                </select>
             </div>
             <div class="margen col-md-5 col-sm-5">
                 <h5 id="error5" hidden></h5>
@@ -76,7 +79,7 @@
                 <input type="text" name="imagen" class="margen input"/>
             </div>
             <div class="margen col-md-10 col-sm-10 col-md-offset-3">
-                <input type="submit"  value="Agregar Liquidador" class="btn btn-danger inputmitad" align="center"/>
+                <input type="submit"  value="Agregar Liquidador" class="btn btn-danger inputmitad" align="center" id="enviar"/>
             </div>
                </form>
     </div>
