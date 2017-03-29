@@ -1,18 +1,7 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" charset="utf-8" />
-    <title>InicioLiquidador</title>
-    <link href="~/Content/Costume.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
     <div>
         @foreach (WebApplication16.Models.Operadores operadores in ViewBag.Operadores)
         {
@@ -22,6 +11,3 @@
         <!--Tengo el nombre de cada operador, cada nombre es una lista de fecha, hora entrada, hora salida, horas trabajadas-->
         <!-- buscador, log out, y una opcion que se llame "agregar", donde va a poder ingresar los datos de un nuevo operador-->
     </div>
-
-</body>
-</html>

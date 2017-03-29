@@ -221,6 +221,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Costume.css" />
     <Content Include="Content\InicioOperador.css" />
+    <Content Include="Content\Liquidador.css" />
     <Content Include="Content\MensajeSalida.css" />
     <Content Include="Content\RegistrarLiquidador.css" />
     <Content Include="Content\RegistrarOperador.css" />
@@ -291,6 +292,10 @@
     <Content Include="Views\Home\AgregarOperador.cshtml" />
     <Content Include="Views\Shared\_LayOut_Operador.cshtml" />
     <Content Include="Views\Usuarios\MensajeSalida.cshtml" />
+    <Content Include="Views\Home\DatosOperador.cshtml" />
+    <Content Include="Views\Home\ModificarDatos.cshtml" />
+    <Content Include="Views\Home\MisDatos.cshtml" />
+    <Content Include="Views\Usuarios\Salida.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

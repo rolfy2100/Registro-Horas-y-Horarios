@@ -55,5 +55,10 @@ namespace WebApplication1.Controllers
             Session["UsuarioLogueado"] = null;
             return View("MensajeSalida");
         }
+        public ActionResult SalirLiquidador()
+        {
+            Session["LiquidadorLogueado"] = null;
+            return View("Salida");
+        }
     }
 }

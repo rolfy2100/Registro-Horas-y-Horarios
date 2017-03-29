@@ -11,7 +11,7 @@ namespace WebApplication1.Models
     {
         public void Agregar(Liquidador liquidador)
         {
-            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
@@ -37,7 +37,7 @@ namespace WebApplication1.Models
         {
             Liquidador liquidador = new Liquidador();
 
-            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
@@ -67,7 +67,7 @@ namespace WebApplication1.Models
             List<Operadores> operadores = new List<Operadores>();
 
 
-            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia

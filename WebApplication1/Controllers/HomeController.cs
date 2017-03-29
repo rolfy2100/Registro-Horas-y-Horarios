@@ -51,7 +51,7 @@ namespace WebApplication16.Controllers
                     if (user == "jefa" && contra == "1234")
                     {
                         TempData["Error3"] = "Todos los campos son obligatorios";
-                        return RedirectToAction("RegistrarLiquidador");                  
+                        return RedirectToAction("RegistrarLiquidador");
                     }
                     else
                     {
@@ -86,7 +86,7 @@ namespace WebApplication16.Controllers
             RegistroHorasManager manager = new RegistroHorasManager();
             List<RegistroHorasHorarios> registro = manager.ConsultarTodos(operador);
             int segtotales = 0;
-            foreach(RegistroHorasHorarios registro1 in registro)
+            foreach (RegistroHorasHorarios registro1 in registro)
             {
                 segtotales = segtotales + registro1.Conteo;
             }
@@ -109,9 +109,9 @@ namespace WebApplication16.Controllers
             string min1 = min.ToString();
             string seg1 = seg.ToString();
             //Agrego un 0 al frente de los valores de solo un digito
-            if (hor < 10) {hor1 = '0' + hor.ToString(); }
-            if (min < 10) {min1 = '0' + min.ToString(); }
-            if (seg < 10) {seg1 = '0' + seg.ToString(); }
+            if (hor < 10) { hor1 = '0' + hor.ToString(); }
+            if (min < 10) { min1 = '0' + min.ToString(); }
+            if (seg < 10) { seg1 = '0' + seg.ToString(); }
 
 
             //Asi se va a mostrar las horas trabajadas en la vista
@@ -126,7 +126,7 @@ namespace WebApplication16.Controllers
         public ActionResult AgregarOperador()
         {
             return View("AgregarOperador");
-        } 
+        }
         public ActionResult NuevoOperador(string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
             Operadores operadores = new Operadores();
@@ -149,13 +149,13 @@ namespace WebApplication16.Controllers
             RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
             RegistroHorasManager manager = new RegistroHorasManager();
             List<RegistroHorasHorarios> registro = manager.ConsultarOperador(fechon, operador);
-            if(registro.Count == 0)
+            if (registro.Count == 0)
             {
                 TempData["Error3"] = "La fecha ingresada no es valida";
                 return RedirectToAction("Home");
             }
             else
-            { 
+            {
                 int segtotales = 0;
                 foreach (RegistroHorasHorarios registro1 in registro)
                 {
@@ -230,6 +230,19 @@ namespace WebApplication16.Controllers
             ViewBag.TrabajoTotal = horastrabajadas;
             ViewBag.Registro = registro;
             return View("RegistroOperador");
+        }
+
+        public ActionResult DatosOperador()
+        {
+            return View();
+        }
+        public ActionResult ModificarDatos(string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
+        {
+            return View();
+        }
+        public ActionResult MisDatos()
+        {
+            return View();
         }
     }
 }

@@ -19,40 +19,40 @@
         <form action="/Home/AgregarLiquidador" method="post" id="submit">
             <div class="margen col-md-5">
                 <label>Ingrese usuario del adminin</label>
-                <input type="text" name="user" class="input" /><h5 id="error">@TempData["Error"]</h5>
+                <input type="text" name="user" class="input" /><h5 id="error" hidden>@TempData["Error"]</h5>
             </div>
             <div class="margen col-md-5 col-sm-5">
                 <label>Ingrese contraseña del admin</label>
-                <input type="password" name="contra" value="" class="input"/><h5 id="error">@TempData["Error2"]</h5>  
+                <input type="password" name="contra" value="" class="input"/><h5 id="error4" hidden>@TempData["Error2"]</h5>  
             </div>
             <div class="margen col-md-10 col-sm-10" id="nombres">
                 <label>Nombres</label>
-                <input type="text" name="nombres"  placeholder="Nombres" class="margen input"/>
+                <input type="text" name="nombres"  placeholder="Nombres" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Apellidos</label>
-                <input type="text" name="apellidos" placeholder="Apellidos" class="margen input"/>
+                <input type="text" name="apellidos" placeholder="Apellidos" class="margen input" required/>
             </div>
             <div class="margen col-md-5 col-sm-5">
                 <label>DNI</label>
-                <input type="number" name="dni" placeholder="DNI" class="margen input" />
+                <input type="number" name="dni" placeholder="DNI" class="margen input" required/>
             </div>
             <div class="margen col-md-5 col-sm-5">
                 <label>Fecha de Nacimiento</label>
-                <input type="date" name="fechanacimiento" class="margen input"/>
+                <input type="date" name="fechanacimiento" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Nacionalidad</label>
-                <input type="text" name="nacionalidad" class="margen input" />
+                <input type="text" name="nacionalidad" class="margen input"  required/>
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Provincia</label>
-                <input type="text" name="provincia" class="margen input" />
+                <input type="text" name="provincia" class="margen input" required/>
             </div>
             <div class="margen col-md-5 col-sm-5" id="estadocivil">
                 <h5 id="error2" hidden></h5>
                 <label>Estado Civil</label>
-                <select type="text" name="estadocivil" class="margen input">
+                <select type="text" name="estadocivil" class="margen input" required>
                     <option value="soltero">Soltero</option>
                     <option value="casado">Casado</option>
                 </select>
@@ -60,23 +60,23 @@
             <div class="margen col-md-5 col-sm-5">
                 <h5 id="error5" hidden></h5>
                 <label>Direccion</label>
-                <input type="text" name="direccion" placeholder="Ej. H. Yrigoyen 300" class="margen input"/>
+                <input type="text" name="direccion" placeholder="Ej. H. Yrigoyen 300" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-5">
                 <label>Mail</label>
-                <input type="email" name="mail" placeholder="Ej. juanperez@hotmail.com" class="margen input"/>
+                <input type="email" name="mail" placeholder="Ej. juanperez@hotmail.com" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Nombre de Usuario</label>
-                <input type="text" name="usuario" class="margen input"/>
+                <input type="text" name="usuario" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Contraseña</label>
-                <input type="text" name="contraseña" class="margen input"/>
+                <input type="text" name="contraseña" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-10">
                 <label>Foto de Perfil</label>
-                <input type="text" name="imagen" class="margen input"/>
+                <input type="text" name="imagen" class="margen input" required/>
             </div>
             <div class="margen col-md-10 col-sm-10 col-md-offset-3">
                 <input type="submit"  value="Agregar Liquidador" class="btn btn-danger inputmitad" align="center" id="enviar"/>

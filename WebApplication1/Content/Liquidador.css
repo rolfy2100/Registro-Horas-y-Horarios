@@ -1,0 +1,42 @@
+﻿body {
+    background: url('Fondo9.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.navbar-inverse {
+    background-color: rgba(2,2,2,0.2);
+    border-color: rgba(08,08,08,0);
+}
+.dropdown-menu{
+    background-color: rgba(2,2,2,1);
+    border-color: rgba(08,08,08,0);
+    text-decoration:none;
+    font-size:inherit;
+    border: inherit;
+    text-align: inherit;
+    color:#999;
+
+}
+.tamaño {
+    font-size: 25px;
+}
+
+#glyphi{
+    text-decoration:none;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:#999;
+    border: inherit;
+    text-align: inherit;
+    background:transparent;
+    padding-top:15px;
+    padding-right: 15px;
+    padding-bottom:15px;
+    display:block;
+}
+#glyphi:focus{
+    color:#fff;
+    background-color:transparent;
+}
+#glyphi:hover{
+    color:#fff;
+    background-color:transparent;
+}
