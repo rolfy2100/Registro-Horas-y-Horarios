@@ -25,8 +25,7 @@ namespace WebApplication16.Controllers
 
         public ActionResult AgregarLiquidador(string user, string contra, string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
-
-            if (user != null && contra != null && nombres != null && apellidos != null && fechanacimiento != null && estadocivil != null && direccion != null && direccion != null && mail != null && usuario != null && contraseña != null)
+            if (Session["LiquidadorLogueado"] != null)
             {
                 if (user == "jefa" && contra == "1234")
                 {
@@ -48,12 +47,7 @@ namespace WebApplication16.Controllers
                 }
                 else
                 {
-                    if (user == "jefa" && contra == "1234")
-                    {
-                        TempData["Error3"] = "Todos los campos son obligatorios";
-                        return RedirectToAction("RegistrarLiquidador");
-                    }
-                    else
+                    if (user != "jefa" && contra != "1234")
                     {
                         TempData["Error"] = "El usuario no existe ";
                         TempData["Error2"] = "o se ha accedido una contraseña invalida";
@@ -61,64 +55,98 @@ namespace WebApplication16.Controllers
                     }
                 }
             }
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Home, Index");
+            }
+
             return RedirectToAction("RegistrarLiquidador");
         }
 
         //Loguearse
         public ActionResult Home()
         {
-            return View("InicioOperador");
+            if (Session["UsuarioLogueado"] != null)
+            {
+                return View("InicioOperador");
+            }
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Home, Index");
+            }
         }
 
         public ActionResult HomeLiquidador()
         {
-            LiquidadorManager manager = new LiquidadorManager();
-            List<Operadores> operadores = manager.Consultar();
-            ViewBag.Operadores = operadores;
+            if(Session["LiquidadorLogueado"] != null)
+            {
+                LiquidadorManager manager = new LiquidadorManager();
+                List<Operadores> operadores = manager.Consultar();
+                ViewBag.Operadores = operadores;
 
-            return View("InicioLiquidador");
+                return View("InicioLiquidador");
+            }
+
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Home, Index");
+            }
+
         }
         //Deslogueo, registro de horas trabajadas
 
         //Mostrar horas trabajadas en el perfil del operador
-        public ActionResult RegistroOperador(int operador)
+        public ActionResult RegistroOperador(int operador = 1)
         {
-            RegistroHorasManager manager = new RegistroHorasManager();
-            List<RegistroHorasHorarios> registro = manager.ConsultarTodos(operador);
-            int segtotales = 0;
-            foreach (RegistroHorasHorarios registro1 in registro)
-            {
-                segtotales = segtotales + registro1.Conteo;
-            }
+            if (Session["UsuarioLogueado"] != null)
+                    {
+                        RegistroHorasManager manager = new RegistroHorasManager();
+                        List<RegistroHorasHorarios> registro = manager.ConsultarTodos(operador);
+                        int segtotales = 0;
+                        foreach (RegistroHorasHorarios registro1 in registro)
+                        {
+                            segtotales = segtotales + registro1.Conteo;
+                        }
 
-            int seg = segtotales % 60;
-            int mininter = segtotales / 60;
-            int min = mininter % 60;
-            int hor = mininter / 60;
-            if (hor < 1)
-            {
-                hor = 0;
-            }
-            if (min < 1)
-            {
-                min = 0;
-            }
-
-
-            string hor1 = hor.ToString();
-            string min1 = min.ToString();
-            string seg1 = seg.ToString();
-            //Agrego un 0 al frente de los valores de solo un digito
-            if (hor < 10) { hor1 = '0' + hor.ToString(); }
-            if (min < 10) { min1 = '0' + min.ToString(); }
-            if (seg < 10) { seg1 = '0' + seg.ToString(); }
+                        int seg = segtotales % 60;
+                        int mininter = segtotales / 60;
+                        int min = mininter % 60;
+                        int hor = mininter / 60;
+                        if (hor < 1)
+                        {
+                            hor = 0;
+                        }
+                        if (min < 1)
+                        {
+                            min = 0;
+                        }
 
 
-            //Asi se va a mostrar las horas trabajadas en la vista
-            string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
-            ViewBag.TrabajoTotal = horastrabajadas;
-            ViewBag.Registro = registro;
-            return View();
+                        string hor1 = hor.ToString();
+                        string min1 = min.ToString();
+                        string seg1 = seg.ToString();
+                        //Agrego un 0 al frente de los valores de solo un digito
+                        if (hor < 10) { hor1 = '0' + hor.ToString(); }
+                        if (min < 10) { min1 = '0' + min.ToString(); }
+                        if (seg < 10) { seg1 = '0' + seg.ToString(); }
+
+
+                        //Asi se va a mostrar las horas trabajadas en la vista
+                        string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
+                        ViewBag.TrabajoTotal = horastrabajadas;
+                        ViewBag.Registro = registro;
+                        return View();
+                    }
+
+                    else
+                    {
+                        TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                        return RedirectToAction("Index", "Home");
+                    }
+               
         }
 
         //Mostrar horas trabajadas en el perfil del liquidador
@@ -245,4 +273,4 @@ namespace WebApplication16.Controllers
             return View();
         }
     }
-}
+    }

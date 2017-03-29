@@ -29,6 +29,7 @@ namespace WebApplication1.Controllers
             {
                 if (liquidador1 != null && liquidador1.DNI != 0) 
                 {
+                    Session["LiquidadorLogueado"] = liquidador1;
                     return RedirectToAction("HomeLiquidador", "Home");
                 }
                 else
@@ -43,22 +44,41 @@ namespace WebApplication1.Controllers
 
         public ActionResult Salir(int operador, string fechaentrada, string horaentrada, string horasalida, string horastrabajadas, int contador)
         {
-            RegistroHorasHorarios horashorarios = new RegistroHorasHorarios();
-            RegistroHorasManager registrohoras = new RegistroHorasManager();
-            horashorarios.FechaEntrada = fechaentrada;
-            horashorarios.HoraEntrada = horaentrada;
-            horashorarios.HoraSalida = horasalida;
-            horashorarios.Conteo = contador;
-            horashorarios.HorasTrabajadas = horastrabajadas;
-            registrohoras.AgregarRegistro(horashorarios, operador); 
-            ViewBag.Usuario = Session["UsuarioLogueado"];
-            Session["UsuarioLogueado"] = null;
-            return View("MensajeSalida");
+
+            if (Session["UsuarioLogueado"] != null)
+                {
+                    RegistroHorasHorarios horashorarios = new RegistroHorasHorarios();
+                    RegistroHorasManager registrohoras = new RegistroHorasManager();
+                    horashorarios.FechaEntrada = fechaentrada;
+                    horashorarios.HoraEntrada = horaentrada;
+                    horashorarios.HoraSalida = horasalida;
+                    horashorarios.Conteo = contador;
+                    horashorarios.HorasTrabajadas = horastrabajadas;
+                    registrohoras.AgregarRegistro(horashorarios, operador);
+                    ViewBag.Usuario = Session["UsuarioLogueado"];
+                    Session["UsuarioLogueado"] = null;
+                    return View("MensajeSalida");
+                }
+                else
+                {
+                    TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                    return RedirectToAction("Home, Index");
+                }
+            
+            
         }
         public ActionResult SalirLiquidador()
         {
-            Session["LiquidadorLogueado"] = null;
+            if (Session["LiquidadorLogueado"] != null)
+            {
+                Session["LiquidadorLogueado"] = null;
             return View("Salida");
+            }
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Home, Index");
+            }
         }
     }
 }
