@@ -12,6 +12,7 @@ namespace WebApplication16.Models
         public string HoraEntrada { get; set; }
         public string HoraSalida { get; set; }
         public string HorasTrabajadas { get; set; }
+        public string Mes { get; set; }
         public int Conteo { get; set; }
     }
 }

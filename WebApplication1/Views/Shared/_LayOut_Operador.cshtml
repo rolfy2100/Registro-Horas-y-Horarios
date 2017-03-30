@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand glyphicon glyphicon-home" href="/Home/HomeLiquidador"></a>
+                <a class="navbar-brand glyphicon glyphicon-home" href="/Home/Home"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,13 +34,16 @@
                         </li>
                     </ul>
                 </form>
-                <form class="navbar-form navbar-left" action="/Home/ConsultarRegistroOperador">
+                <form class="navbar-form navbar-left" name="form1" action="/Home/ConsultarRegistroOperador" method="post">
                     <div class="form-group">
-                        <input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden>
+                        <input type="text" name="operador" readonly="readonly" value="@(((WebApplication16.Models.Operadores)Session["UsuarioLogueado"]).DNI)" class="lala aladerecha" hidden>    
                         <input type="text" class="form-control" placeholder="Ingresar fecha" value="" name="fechon">
                     </div>
+                    <select class="btn btn-default" name="buscador" id="buscador" required >
+                        <option value="1">Por fecha</option>
+                        <option value="2">Por mes</option>
+                    </select>
                     <button type="submit" class="btn btn-danger">Buscar</button>
-
                 </form>
                 <h5 class="error navbar-form navbar-left" id="error"><i>@TempData["Error3"]</i></h5>
                 <form action="@Url.Action("Salir","Usuarios")" method="post">
@@ -55,9 +58,11 @@
                          <!--Contador-->
                         <input type="text" name="contador" id="contar" value="" readonly="readonly" class="lala" hidden />
                         <!--Hora de salida-->                   
-                        <input type="text" name="horasalida" id="horasalida" class="lala" readonly="readonly" hidden />
-                        <!--Boton de deslogueo y finalizacion del conteo-->
+                        <input type="text" name="horasalida" id="horasalida" value="" class="lala" readonly="readonly" hidden />
+                        <!--Mes-->
+                        <input type="text" name="mes" id="mes" class="lala" readonly="readonly" hidden />
                         <ul class="nav navbar-nav navbar-right">
+                            <!--Boton de deslogueo y finalizacion del conteo-->
                             <li>  <input type="submit" value="Salir" id="salir" />     </li>       
                         </ul>
                 </form>    

@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        public ActionResult Salir(int operador, string fechaentrada, string horaentrada, string horasalida, string horastrabajadas, int contador)
+        public ActionResult Salir(int operador, string fechaentrada, string horaentrada, string horasalida, string horastrabajadas, string mes, int contador)
         {
 
             if (Session["UsuarioLogueado"] != null)
@@ -54,6 +54,7 @@ namespace WebApplication1.Controllers
                     horashorarios.HoraSalida = horasalida;
                     horashorarios.Conteo = contador;
                     horashorarios.HorasTrabajadas = horastrabajadas;
+                    horashorarios.Mes = mes;
                     registrohoras.AgregarRegistro(horashorarios, operador);
                     ViewBag.Usuario = Session["UsuarioLogueado"];
                     Session["UsuarioLogueado"] = null;
@@ -72,7 +73,7 @@ namespace WebApplication1.Controllers
             if (Session["LiquidadorLogueado"] != null)
             {
                 Session["LiquidadorLogueado"] = null;
-            return View("Salida");
+                return View("Salida");
             }
             else
             {

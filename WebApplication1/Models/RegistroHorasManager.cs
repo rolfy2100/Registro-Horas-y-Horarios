@@ -11,18 +11,19 @@ namespace WebApplication1.Models
     {
         public void AgregarRegistro(RegistroHorasHorarios horashorarios, int operador)
         {
-            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
             SqlCommand sentencia = conexion.CreateCommand();
             //4-escribrimos la sentencia
-            sentencia.CommandText = "insert into RegistroHorasHorarios (Operador, FechaEntrada, HoraEntrada, HoraSalida, HorasTrabajadas, Conteo) VALUES (@Operador, @FechaEntrada, @HoraEntrada, @HoraSalida, @HorasTrabajadas, @Conteo)";
+            sentencia.CommandText = "insert into RegistroHorasHorarios (Operador, FechaEntrada, HoraEntrada, HoraSalida, HorasTrabajadas, Mes, Conteo) VALUES (@Operador, @FechaEntrada, @HoraEntrada, @HoraSalida, @HorasTrabajadas, @Mes, @Conteo)";
             sentencia.Parameters.AddWithValue("@Operador", operador);
             sentencia.Parameters.AddWithValue("@FechaEntrada", horashorarios.FechaEntrada);
             sentencia.Parameters.AddWithValue("@HoraEntrada", horashorarios.HoraEntrada);
             sentencia.Parameters.AddWithValue("@HoraSalida", horashorarios.HoraSalida);
             sentencia.Parameters.AddWithValue("@HorasTrabajadas", horashorarios.HorasTrabajadas);
+            sentencia.Parameters.AddWithValue("@Mes", horashorarios.Mes);
             sentencia.Parameters.AddWithValue("@Conteo", horashorarios.Conteo);
 
             sentencia.ExecuteNonQuery();
@@ -35,7 +36,7 @@ namespace WebApplication1.Models
 
             List<RegistroHorasHorarios> registrohoras = new List<RegistroHorasHorarios>();
 
-            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
@@ -67,7 +68,7 @@ namespace WebApplication1.Models
         public List<RegistroHorasHorarios> ConsultarOperador(string fechon, int operador)
         {
             List<RegistroHorasHorarios> registrohoras1 = new List<RegistroHorasHorarios>();
-            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia
@@ -97,7 +98,7 @@ namespace WebApplication1.Models
         public List<RegistroHorasHorarios> ConsultarLiquidador(string fechon)
         {
             List<RegistroHorasHorarios> registrohoras1 = new List<RegistroHorasHorarios>();
-            SqlConnection conexion = new SqlConnection("Server=CPX-XJPS8OPFPHQ;Database=RegistroHorasHorarios;Trusted_Connection=True;");
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
             //2-nos conectamos
             conexion.Open();
             //3-creamos el objeto que nos permite escribir la sentencia

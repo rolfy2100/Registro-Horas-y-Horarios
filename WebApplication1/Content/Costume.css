@@ -8,7 +8,7 @@ h1{
     color: #210202;     
 }
 #contenido{
-margin-top: -57px; /* la mitad del alto del objeto a centrat */
+margin-top: -57px; /* la mitad del alto del objeto a centrar */
 margin-left: -87px; /* la mitad del ancho del objeto a centrar */
 position: absolute;
 top: 40%;
@@ -41,6 +41,7 @@ height: 114px; /* alto del objeto a centrar */
 input -webkit-autofill {
     -webkit-box-shadow: 0 0 0px rgba(255, 255, 255, 0.5) !important white inset;
 }
-.error{
+#error{
     color: red;
+    text-align: center;
 }

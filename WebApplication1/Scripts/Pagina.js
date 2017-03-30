@@ -15,6 +15,10 @@
         var fechafinal0 = fecha0 + "/" + mes0 + "/" + año0;
         localStorage.setItem("fechafinal0", fechafinal0);
         document.getElementById("fechaentrada").value = fechafinal0;
+
+        var meses = ["Nopuedesercero", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var mestrabajado = meses[mes0];
+        localStorage.setItem("mestrabajado", mestrabajado);
     }
 
     //Registrar hora de entrada
@@ -118,7 +122,8 @@
         var horaentrada = localStorage.getItem("horariofinal2");
         document.getElementById("contar").value = segtrabajados;
         document.getElementById("horastrabajadas").value = horastrabajadas;
-        document.getElementById("horasalida").value =  horas3 + ':' + minutos3 + ':' + segundos3;
+        document.getElementById("horasalida").value = horas3 + ':' + minutos3 + ':' + segundos3;
+        document.getElementById("mes").value = localStorage.getItem("mestrabajado");
         localStorage.setItem("entrasalida", 'Trabajaste un total de ' + horastrabajadas);
         localStorage.setItem('usuario', usuario);
         localStorage.removeItem("fechafinal0");
@@ -126,6 +131,7 @@
         localStorage.removeItem("horas");
         localStorage.removeItem("minutos")
         localStorage.removeItem("segundos");
+        localStorage.removeItem("mestrabajado");
         //clearInterval(temporizador);
     })
 
@@ -148,3 +154,6 @@
         $("#error").slideUp(10000);
     }
     error();
+    var opcion = document.form1.buscador.value;
+    var combo = document.getElementById('buscador').options[document.getElementById('buscador').selectedIndex].text
+    var valor = document.form1.buscador.value;
