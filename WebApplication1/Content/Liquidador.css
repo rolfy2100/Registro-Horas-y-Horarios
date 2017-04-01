@@ -40,3 +40,14 @@
     color:#fff;
     background-color:transparent;
 }
+table {
+    color:white;
+    border-collapse: separate;
+    border-spacing:  60px 15px;
+}
+h1{
+    color: white;
+}
+#vista{
+    background-color: rgba(0,0,0,0.5);
+}

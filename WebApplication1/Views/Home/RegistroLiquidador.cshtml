@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "RegistroLiquidador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center col-md-6 col-md-offset-3" id="vista">
+    <h1 class="text-center">Registro</h1>
+    <table>
+        <!--Creo tabla para mostrar las horas trabajadas-->
+        <tr>
+            <td><strong>Fecha</strong></td>
+            <td><strong>Horario entrada </strong></td>
+            <td><strong>Horario salida</strong></td>
+            <td><strong>Horas trabajadas</strong></td>
+            <td><strong>Total Horas</strong></td>
+        </tr>
+        <!--Itero viewbag-->
+        @if (ViewBag.Registro != null)
+        {
+            foreach (WebApplication16.Models.RegistroHorasHorarios registro in ViewBag.Registro)
+            {
+                <tr>
+
+                    <td>@registro.FechaEntrada</td>
+                    <td>@registro.HoraEntrada</td>
+                    <td>@registro.HoraSalida</td>
+                    <td>@registro.HorasTrabajadas</td>
+                </tr>
+            }
+        }
+
+        <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@if (ViewBag.TrabajoTotal != null)
+            {
+                foreach (var trabajo in ViewBag.TrabajoTotal)
+                {@trabajo}
+            }</td>
+        </tr>
+
+    </table>
+</div>

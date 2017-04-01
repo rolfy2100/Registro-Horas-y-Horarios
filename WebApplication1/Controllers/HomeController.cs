@@ -181,7 +181,7 @@ namespace WebApplication16.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult ConsultarRegistroOperador(string fechon="1", int operador=1, string buscador = "1")
+        public ActionResult ConsultarRegistroOperador(string fechon="1", int operador=1, string buscador = "10")
         {
             if (Session["UsuarioLogueado"] == null)
             {       
@@ -193,10 +193,10 @@ namespace WebApplication16.Controllers
             else { 
                 RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
                 RegistroHorasManager manager = new RegistroHorasManager();
-                List<RegistroHorasHorarios> registro = manager.ConsultarOperador(fechon, operador);
+                List<RegistroHorasHorarios> registro = manager.ConsultarOperador(fechon, operador, buscador);
                 if (registro.Count == 0)
                 {
-                    TempData["Error3"] = "La fecha ingresada no es valida";
+                    TempData["Error3"] = "La fecha o mes ingresado no es valido";
                     return RedirectToAction("Home");
                 }
                 else
@@ -237,9 +237,55 @@ namespace WebApplication16.Controllers
                 }
             }
         }
-        
 
-        public ActionResult ConsultarRegistroLiquidador(string fechon = "1")
+        public ActionResult ConsultarRegLiq(int operador)
+        {
+            RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
+            RegistroHorasManager manager = new RegistroHorasManager();
+            List<RegistroHorasHorarios> registro = manager.ConsultarLiquidador(operador);
+            int segtotales = 0;
+            if (registro.Count == 0)
+            {
+                TempData["Error3"] = "Este mes aun no ha trabajado";
+                return RedirectToAction("HomeLiquidador");
+            }
+            else
+            {
+                foreach (RegistroHorasHorarios registro1 in registro)
+                {
+                    segtotales = segtotales + registro1.Conteo;
+                }
+
+                int seg = segtotales % 60;
+                int mininter = segtotales / 60;
+                int min = mininter % 60;
+                int hor = mininter / 60;
+                if (hor < 1)
+                {
+                    hor = 0;
+                }
+                if (min < 1)
+                {
+                    min = 0;
+                }
+
+                string hor1 = hor.ToString();
+                string min1 = min.ToString();
+                string seg1 = seg.ToString();
+                //Agrego un 0 al frente de los valores de solo un digito
+                if (hor < 10) { hor1 = '0' + hor.ToString(); }
+                if (min < 10) { min1 = '0' + min.ToString(); }
+                if (seg < 10) { seg1 = '0' + seg.ToString(); }
+
+                //Asi se va a mostrar las horas trabajadas en la vista
+                string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
+
+                ViewBag.TrabajoTotal = horastrabajadas;
+                ViewBag.Registro = registro;
+                return View("RegistroLiquidador");
+            }
+        }
+        public ActionResult ConsultarRegLiqFecha(string fechon = "1")
         {
             if (Session["LiquidadorLogueado"] == null)
             {
@@ -252,7 +298,7 @@ namespace WebApplication16.Controllers
             {
                 RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
                 RegistroHorasManager manager = new RegistroHorasManager();
-                List<RegistroHorasHorarios> registro = manager.ConsultarLiquidador(fechon);
+                List<RegistroHorasHorarios> registro = manager.ConsultarLiquiFecha(fechon);
                 int segtotales = 0;
                 if (registro.Count == 0)
                 {

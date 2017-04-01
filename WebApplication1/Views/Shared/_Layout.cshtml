@@ -32,10 +32,14 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left" method="post" action="/">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Ingresar fecha">
                     </div>
+                    <select class="btn btn-default" name="buscador" id="buscador" required>
+                        <option value="1">Por fecha</option>
+                        <option value="2">Por mes</option>
+                    </select>
                     <button type="submit" class="btn btn-danger">Buscar</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">

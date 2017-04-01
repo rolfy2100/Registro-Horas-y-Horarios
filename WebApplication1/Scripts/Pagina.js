@@ -135,6 +135,7 @@
         //clearInterval(temporizador);
     })
 
+    //convertir a href en el submit del form
     $("#href").on("click", function () {
         document.getElementById('form2').submit();
         return false;
