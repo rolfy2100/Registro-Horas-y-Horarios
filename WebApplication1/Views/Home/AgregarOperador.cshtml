@@ -1,59 +1,65 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <div class="col-md-6 col-sm-10 col-md-offset-3">
-        <div class="margen col-md-10 col-sm-10"><h1 class="text-center">Crear Operador</h1></div>
-        <form action="/Home/NuevoOperador" method="post">
-            <div class="margen col-md-10 col-sm-10">
-                <label>Nombres</label>
-                <input type="text" name="nombres" placeholder="Nombres" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10">
-                <label>Apellidos</label>
-                <input type="text" name="apellidos" placeholder="Apellidos" class="margen input" />
-            </div>
-            <div class="margen col-md-5 col-sm-5">
-                <label>DNI</label>
-                <input type="number" name="dni" placeholder="DNI" class="margen input" />
-            </div>
-            <div class="margen col-md-5 col-sm-5">
-                <label>Fecha de Nacimiento</label>
-                <input type="date" name="fechanacimiento" placeholder="Ej. 02/05/90" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10">
-                <label>Nacionalidad</label>
-                <input type="text" name="nacionalidad" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10">
-                <label>Provincia</label>
-                <input type="text" name="provincia" class="margen input" />
-            </div>
-            <div class="margen col-md-5 col-sm-5">
-                <label>Estado Civil</label>
-                <input type="text" name="estadocivil" placeholder="Estado Civil" class="margen input" />
-            </div>
-            <div class="margen col-md-5 col-sm-5">
-                <label>Direccion</label>
-                <input type="text" name="direccion" placeholder="Ej. H. Yrigoyen 300" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-5">
-                <label>Mail</label>
-                <input type="email" name="mail" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10">
-                <label>Nombre de Usuario</label>
-                <input type="text" name="usuario" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10">
-                <label>Contraseña</label>
-                <input type="text" name="contraseña" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10">
-                <label>Foto de Perfil</label>
-                <input type="text" name="imagen" class="margen input" />
-            </div>
-            <div class="margen col-md-10 col-sm-10 col-md-offset-3">
-                <input type="submit" value="Agregar Liquidador" class="btn btn-danger inputmitad" align="center" />
-            </div>
-        </form>
-    </div>
+<div class="col-md-6 col-sm-10 col-md-offset-3" id="agregaroperador">
+    <div class="margen col-md-10 col-sm-10"><h1 class="text-center" id="crearoperador">Crear Operador</h1></div>
+    <div class="margen col-md-8 col-sm-8 col-md-offset-1 text-center"><p>El unico campo opcional es la imagen del perfil, todos los otros campos son obligatorios. Sin el usuario y la contraseña del administrador no se podra agregar un liquidador</p></div>
+    <form action="/Home/NuevoOperador" method="post" id="submit">
+        <div class="margen col-md-10 col-sm-10" id="nombres">
+            <label>Nombres</label>
+            <input type="text" name="nombres" placeholder="Nombres" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Apellidos</label>
+            <input type="text" name="apellidos" placeholder="Apellidos" class="margen input" required />
+        </div>
+        <div class="margen col-md-5 col-sm-5">
+            <label>DNI</label>
+            <input type="number" name="dni" placeholder="DNI" class="margen input" required />
+        </div>
+        <div class="margen col-md-5 col-sm-5">
+            <label>Fecha de Nacimiento</label>
+            <input type="date" name="fechanacimiento" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Nacionalidad</label>
+            <input type="text" name="nacionalidad" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Provincia</label>
+            <input type="text" name="provincia" class="margen input" required />
+        </div>
+        <div class="margen col-md-5 col-sm-5" id="estadocivil">
+            <h5 id="error2" hidden></h5>
+            <label>Estado Civil</label>
+            <select type="text" name="estadocivil" class="margen input" required>
+                <option value="soltero">Soltero</option>
+                <option value="casado">Casado</option>
+            </select>
+        </div>
+        <div class="margen col-md-5 col-sm-5">
+            <h5 id="error5" hidden></h5>
+            <label>Direccion</label>
+            <input type="text" name="direccion" placeholder="Ej. H. Yrigoyen 300" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-5">
+            <label>Mail</label>
+            <input type="email" name="mail" placeholder="Ej. juanperez@hotmail.com" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Nombre de Usuario</label>
+            <input type="text" name="usuario" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Contraseña</label>
+            <input type="text" name="contraseña" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Foto de Perfil</label>
+            <input type="text" name="imagen" class="margen input" required />
+        </div>
+        <div class="margen col-md-10 col-sm-10 col-md-offset-3">
+            <input type="submit" value="Agregar Operador" class="btn btn-danger inputmitad" align="center" id="enviar" />
+        </div>
+    </form>
+</div>

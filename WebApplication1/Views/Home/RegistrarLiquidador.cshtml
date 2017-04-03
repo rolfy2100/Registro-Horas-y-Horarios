@@ -16,7 +16,7 @@
     <div class="col-md-6 col-sm-10 col-md-offset-3">
         <div class="margen col-md-10 col-sm-10"><h1 class="text-center">Crear Liquidador</h1></div>
         <div class="margen col-md-8 col-sm-8 col-md-offset-1 text-center" ><p>El unico campo opcional es la imagen del perfil, todos los otros campos son obligatorios. Sin el usuario y la contraseña del administrador no se podra agregar un liquidador</p></div>
-        <form action="/Home/AgregarLiquidador" method="post" id="submit">
+        <form action="/Home/AgregarLiquidador" method="post">
             <div class="margen col-md-5">
                 <label>Ingrese usuario del adminin</label>
                 <input type="text" name="user" class="input" /><h5 id="error" hidden>@TempData["Error"]</h5>

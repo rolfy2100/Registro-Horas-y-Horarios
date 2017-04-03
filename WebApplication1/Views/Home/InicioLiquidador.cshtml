@@ -1,18 +1,16 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    @Scripts.Render("~/bundles/bootstrap")
 }
-<link href="~/Content/InicioLiq.css" rel="stylesheet" />
-    <div class="col-md-6 col-md-offset-3 text-center desplegar" >
+
+
+    <div class="col-md-4 col-md-offset-4 text-center desplegar" >
         @foreach (WebApplication16.Models.Operadores operadores in ViewBag.Operadores)
         {
             <form action="/Home/ConsultarRegLiq" method="post" id="@operadores.DNI">
                 <input type="text" value="@operadores.DNI" name="operador" hidden/>
-                <a href="#" onclick="convertir()" id="@operadores.DNI">@operadores.Nombres @operadores.Apellidos</a> <div id="error" hidden> @TempData["Error3"]</div>
+                <a href="#" onclick="convertir()" id="@operadores.DNI">@operadores.Nombres @operadores.Apellidos</a> 
             </form>
         }
-
-        <!--Tengo el nombre de cada operador, cada nombre es una lista de fecha, hora entrada, hora salida, horas trabajadas-->
-        <!-- buscador, log out, y una opcion que se llame "agregar", donde va a poder ingresar los datos de un nuevo operador-->
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/InicioLiq.js"></script>
+        <div class="row" id="error" hidden>@TempData["Error3"]</div>
     </div>

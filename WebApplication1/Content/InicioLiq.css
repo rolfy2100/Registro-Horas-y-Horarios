@@ -1,1 +1,7 @@
-﻿
+﻿.desplegar{
+    font-size: 30px;
+}
+#error{
+    font-size: 16px;
+    color: red;
+}

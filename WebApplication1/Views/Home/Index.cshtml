@@ -15,6 +15,7 @@
 <body>
     <div id="contenido">
         <h1>AM Nativa</h1>
+        <h6 id="error4" class="error"><i>@TempData["Error4"]</i></h6>
             <form action="/Usuarios/DoLogin" method="post" autocomplete="off">
                 <table class="tabla">
                     <tr>
@@ -31,7 +32,7 @@
                     </tr>
                 </table>
             </form>
-        <h6 id="error"><i>@TempData["Error"]</i></h6>
+        <h6 id="error" class="error"><i>@TempData["Error"]</i></h6>
     </div>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/Index.js"></script>

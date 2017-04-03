@@ -85,17 +85,17 @@ namespace WebApplication16.Controllers
             else
             {
                 TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
-                return RedirectToAction("Home, Index");
+                return RedirectToAction("Index", "Home");
             }
 
         }
-        //Deslogueo, registro de horas trabajadas
 
         //Mostrar horas trabajadas en el perfil del operador
         public ActionResult RegistroOperador(int operador = 1)
         {
             if (Session["UsuarioLogueado"] != null)
                     {
+
                         RegistroHorasManager manager = new RegistroHorasManager();
                         List<RegistroHorasHorarios> registro = manager.ConsultarTodos(operador);
                         int segtotales = 0;
@@ -147,8 +147,12 @@ namespace WebApplication16.Controllers
         public ActionResult AgregarOperador()
         {
             if(Session["LiquidadorLogueado"] != null)
-            { 
-            return View("AgregarOperador");
+            {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores = manager2.Consultar();
+                ViewBag.Operadores = operadores;
+                return View("AgregarOperador");
             }
             else
             {
@@ -160,6 +164,11 @@ namespace WebApplication16.Controllers
         {
             if (Session["LiquidadorLogueado"] != null)
             {
+            //Obtengo operadores para introducirlos en el layout
+            LiquidadorManager manager2 = new LiquidadorManager();
+            List<Operadores> operadores2 = manager2.Consultar();
+            ViewBag.Operadores = operadores2;
+
             Operadores operadores = new Operadores();
             operadores.Nombres = nombres;
             operadores.Apellidos = apellidos;
@@ -190,7 +199,8 @@ namespace WebApplication16.Controllers
                     return RedirectToAction("Index", "Home");
                 
             }
-            else { 
+            else {
+
                 RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
                 RegistroHorasManager manager = new RegistroHorasManager();
                 List<RegistroHorasHorarios> registro = manager.ConsultarOperador(fechon, operador, buscador);
@@ -240,53 +250,6 @@ namespace WebApplication16.Controllers
 
         public ActionResult ConsultarRegLiq(int operador)
         {
-            RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
-            RegistroHorasManager manager = new RegistroHorasManager();
-            List<RegistroHorasHorarios> registro = manager.ConsultarLiquidador(operador);
-            int segtotales = 0;
-            if (registro.Count == 0)
-            {
-                TempData["Error3"] = "Este mes aun no ha trabajado";
-                return RedirectToAction("HomeLiquidador");
-            }
-            else
-            {
-                foreach (RegistroHorasHorarios registro1 in registro)
-                {
-                    segtotales = segtotales + registro1.Conteo;
-                }
-
-                int seg = segtotales % 60;
-                int mininter = segtotales / 60;
-                int min = mininter % 60;
-                int hor = mininter / 60;
-                if (hor < 1)
-                {
-                    hor = 0;
-                }
-                if (min < 1)
-                {
-                    min = 0;
-                }
-
-                string hor1 = hor.ToString();
-                string min1 = min.ToString();
-                string seg1 = seg.ToString();
-                //Agrego un 0 al frente de los valores de solo un digito
-                if (hor < 10) { hor1 = '0' + hor.ToString(); }
-                if (min < 10) { min1 = '0' + min.ToString(); }
-                if (seg < 10) { seg1 = '0' + seg.ToString(); }
-
-                //Asi se va a mostrar las horas trabajadas en la vista
-                string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
-
-                ViewBag.TrabajoTotal = horastrabajadas;
-                ViewBag.Registro = registro;
-                return View("RegistroLiquidador");
-            }
-        }
-        public ActionResult ConsultarRegLiqFecha(string fechon = "1")
-        {
             if (Session["LiquidadorLogueado"] == null)
             {
 
@@ -296,14 +259,20 @@ namespace WebApplication16.Controllers
             }
             else
             {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
+
+
                 RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
                 RegistroHorasManager manager = new RegistroHorasManager();
-                List<RegistroHorasHorarios> registro = manager.ConsultarLiquiFecha(fechon);
+                List<RegistroHorasHorarios> registro = manager.ConsultarLiquidador(operador);
                 int segtotales = 0;
                 if (registro.Count == 0)
                 {
-                    TempData["Error3"] = "La fecha ingresada no es valida";
-                    return RedirectToAction("Home");
+                    TempData["Error3"] = "Este mes aun no ha trabajado";
+                    return RedirectToAction("HomeLiquidador");
                 }
                 else
                 {
@@ -338,15 +307,147 @@ namespace WebApplication16.Controllers
 
                     ViewBag.TrabajoTotal = horastrabajadas;
                     ViewBag.Registro = registro;
-                    return View("RegistroOperador");
+                    return View("RegistroLiquidador");
                 }
             }
         }
+        public ActionResult ConsultarRegLiqFecha(string fechon = "1")
+        {
+            if (Session["LiquidadorLogueado"] == null)
+            {
+
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
+
+                RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
+                RegistroHorasManager manager = new RegistroHorasManager();
+                List<RegistroHorasHorarios> registro = manager.ConsultarLiquiFecha(fechon);
+                int segtotales = 0;
+                if (registro.Count == 0)
+                {
+                    TempData["Error5"] = "La fecha ingresada no es valida";
+                    return RedirectToAction("HomeLiquidador");
+                }
+                else
+                {
+                    foreach (RegistroHorasHorarios registro1 in registro)
+                    {
+                        segtotales = segtotales + registro1.Conteo;
+                    }
+
+                    int seg = segtotales % 60;
+                    int mininter = segtotales / 60;
+                    int min = mininter % 60;
+                    int hor = mininter / 60;
+                    if (hor < 1)
+                    {
+                        hor = 0;
+                    }
+                    if (min < 1)
+                    {
+                        min = 0;
+                    }
+
+                    string hor1 = hor.ToString();
+                    string min1 = min.ToString();
+                    string seg1 = seg.ToString();
+                    //Agrego un 0 al frente de los valores de solo un digito
+                    if (hor < 10) { hor1 = '0' + hor.ToString(); }
+                    if (min < 10) { min1 = '0' + min.ToString(); }
+                    if (seg < 10) { seg1 = '0' + seg.ToString(); }
+
+                    //Asi se va a mostrar las horas trabajadas en la vista
+                    string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
+
+                    ViewBag.TrabajoTotal = horastrabajadas;
+                    ViewBag.Registro = registro;
+                    return View("RegistroLiquidador");
+                }
+            }
+        }
+
+
+        public ActionResult ConsultarRegLiqMes(string mes, int operador)
+        {
+            if (Session["LiquidadorLogueado"] == null)
+            {
+
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
+
+                RegistroHorasHorarios registroshoras1 = new RegistroHorasHorarios();
+                RegistroHorasManager manager = new RegistroHorasManager();
+                List<RegistroHorasHorarios> registro = manager.ConsultarLiquiMes(mes, operador);
+                int segtotales = 0;
+                if (registro.Count == 0)
+                {
+                    TempData["Error5"] = "El operador seleccionado no trabajo en el mes seleccionado";
+                    return RedirectToAction("HomeLiquidador");
+                }
+                else
+                {
+                    foreach (RegistroHorasHorarios registro1 in registro)
+                    {
+                        segtotales = segtotales + registro1.Conteo;
+                    }
+
+                    int seg = segtotales % 60;
+                    int mininter = segtotales / 60;
+                    int min = mininter % 60;
+                    int hor = mininter / 60;
+                    if (hor < 1)
+                    {
+                        hor = 0;
+                    }
+                    if (min < 1)
+                    {
+                        min = 0;
+                    }
+
+                    string hor1 = hor.ToString();
+                    string min1 = min.ToString();
+                    string seg1 = seg.ToString();
+                    //Agrego un 0 al frente de los valores de solo un digito
+                    if (hor < 10) { hor1 = '0' + hor.ToString(); }
+                    if (min < 10) { min1 = '0' + min.ToString(); }
+                    if (seg < 10) { seg1 = '0' + seg.ToString(); }
+
+                    //Asi se va a mostrar las horas trabajadas en la vista
+                    string horastrabajadas = hor1 + ":" + min1 + ":" + seg1;
+
+                    ViewBag.TrabajoTotal = horastrabajadas;
+                    ViewBag.Registro = registro;
+                    return View("RegistroLiquidador");
+                }
+            }
+        }
+
 
         public ActionResult DatosOperador()
         {
             if (Session["LiquidadorLogueado"] != null)
             {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
+
                 return View();
             }
             else
@@ -358,12 +459,22 @@ namespace WebApplication16.Controllers
         }
         public ActionResult ModificarDatos(string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
+            //Obtengo operadores para introducirlos en el layout
+            LiquidadorManager manager2 = new LiquidadorManager();
+            List<Operadores> operadores2 = manager2.Consultar();
+            ViewBag.Operadores = operadores2;
+
             return View();
         }
         public ActionResult MisDatos()
         {
             if (Session["LiquidadorLogueado"] != null)
             {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
+
                 return View();
             }
             else
@@ -374,6 +485,11 @@ namespace WebApplication16.Controllers
         }
         public ActionResult ModificarLiquidador()
         {
+            //Obtengo operadores para introducirlos en el layout
+            LiquidadorManager manager2 = new LiquidadorManager();
+            List<Operadores> operadores2 = manager2.Consultar();
+            ViewBag.Operadores = operadores2;
+
             return View();
         }
     }

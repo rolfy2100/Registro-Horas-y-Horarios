@@ -135,6 +135,11 @@ namespace WebApplication1.Models
 
         public List<RegistroHorasHorarios> ConsultarLiquidador(int operador)
         {
+            DateTime moment = DateTime.Today;
+            var mes = moment.Month;
+            string[] meses = new string[] { "Nopuedesercero", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            var mestrabajado = meses[mes];
+
             List<RegistroHorasHorarios> registrohoras1 = new List<RegistroHorasHorarios>();
             SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
             //2-nos conectamos
@@ -142,8 +147,8 @@ namespace WebApplication1.Models
             //3-creamos el objeto que nos permite escribir la sentencia
             SqlCommand sentencia = conexion.CreateCommand();
             //4-escribrimos la sentencia
-            sentencia.CommandText = "Select * from RegistroHorasHorarios where Operador = '" + operador + "'";
-
+            sentencia.CommandText = "Select * from RegistroHorasHorarios where Operador = '" + operador + "' and Mes = '" + mestrabajado + "'";
+         
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
@@ -191,7 +196,7 @@ namespace WebApplication1.Models
 
             return registrohoras1;
         }
-        public List<RegistroHorasHorarios> ConsultarLiquiMes(string mes)
+        public List<RegistroHorasHorarios> ConsultarLiquiMes(string mes, int operador)
         {
             List<RegistroHorasHorarios> registrohoras1 = new List<RegistroHorasHorarios>();
             SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
@@ -200,7 +205,7 @@ namespace WebApplication1.Models
             //3-creamos el objeto que nos permite escribir la sentencia
             SqlCommand sentencia = conexion.CreateCommand();
             //4-escribrimos la sentencia
-            sentencia.CommandText = "Select * from RegistroHorasHorarios where Mes = '" + mes + "'";
+            sentencia.CommandText = "Select * from RegistroHorasHorarios where Mes = '" + mes + "' and Operador = '" + operador + "'";
 
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer

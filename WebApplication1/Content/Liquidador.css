@@ -51,3 +51,39 @@ h1{
 #vista{
     background-color: rgba(0,0,0,0.5);
 }
+#mes {
+    display: none;
+}
+#operador {
+    display: none;
+}
+#error5{
+     font-size: 16px;
+    color: red;
+}
+.margen{
+    margin-bottom: 10px;
+
+}
+.input{
+    padding: 4px 8px;
+    border-color:rgba(0,0,0,0.4);
+    width:100%;
+}
+.divmitad{
+    width:40%;
+}
+.inputmitad{
+    margin-top: 20px;
+     padding: 4px 8px;
+    border-color:rgba(0,0,0,0.4);
+    border-radius:1px;
+    width:50%;
+    height:40px;
+}
+#agregaroperador{
+    color: #EEE8AA;
+}
+#crearoperador{
+    color: #EEE8AA;
+}

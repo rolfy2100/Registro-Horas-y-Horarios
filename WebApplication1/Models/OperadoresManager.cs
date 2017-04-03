@@ -110,5 +110,31 @@ namespace WebApplication1.Models
 
             return operadores2;
         }
+        public void Actualizar(Operadores operadores)
+        {
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            //2-nos conectamos
+            conexion.Open();
+            //3-creamos el objeto que nos permite escribir la sentencia
+            SqlCommand sentencia = conexion.CreateCommand();
+            //4-escribrimos la sentencia
+            sentencia.CommandText = "update Articulos set (Nombres, Apellidos, DNI, FechaNacimiento, EstadoCivil, Direccion, Mail, Usuario, Contraseña, Imagen) VALUES (@Nombres, @Apellidos, @DNI, @FechaNacimiento, @EstadoCivil, @Direccion, @Mail, @Usuario, @Contraseña, @Imagen)";
+            sentencia.Parameters.AddWithValue("@Nombres", operadores.Nombres);
+            sentencia.Parameters.AddWithValue("@Apellidos", operadores.Apellidos);
+            sentencia.Parameters.AddWithValue("@DNI", operadores.DNI);
+            sentencia.Parameters.AddWithValue("@FechaNacimiento", operadores.FechaNacimiento);
+            sentencia.Parameters.AddWithValue("@EstadoCivil", operadores.EstadoCivil);
+            sentencia.Parameters.AddWithValue("@Direccion", operadores.Direccion);
+            sentencia.Parameters.AddWithValue("@Mail", operadores.Mail);
+            sentencia.Parameters.AddWithValue("@Usuario", operadores.Usuario);
+            sentencia.Parameters.AddWithValue("@Contraseña", operadores.Contraseña);
+            sentencia.Parameters.AddWithValue("@Imagen", operadores.Imagen);
+
+            sentencia.ExecuteNonQuery();
+
+            conexion.Close();
+        }
+        //sentencia.CommandText = "update Articulos set Titulo = @Titulo, Texto = @Texto, Imagen = @Imagen, Autor = @Autor WHERE Id = @Id";
+
     }
 }
