@@ -297,7 +297,6 @@
     <Content Include="Views\Home\DatosOperador.cshtml" />
     <Content Include="Views\Home\ModificarDatos.cshtml" />
     <Content Include="Views\Home\MisDatos.cshtml" />
-    <Content Include="Views\Usuarios\Salida.cshtml" />
     <Content Include="Views\Home\RegistroLiquidador.cshtml" />
   </ItemGroup>
   <ItemGroup>

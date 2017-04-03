@@ -73,7 +73,7 @@ namespace WebApplication1.Controllers
             if (Session["LiquidadorLogueado"] != null)
             {
                 Session["LiquidadorLogueado"] = null;
-                return View("Salida");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
