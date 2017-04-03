@@ -4,5 +4,66 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MisDatos</h2>
-
+<div class="col-md-6 col-sm-10 col-md-offset-3" id="agregaroperador">
+    <div class="margen col-md-10 col-sm-10" id="agregaroperador"><h1 class="text-center" id="agregaroperador">Mis datos</h1></div>
+    <div class="margen col-md-8 col-sm-8 col-md-offset-1 text-center"><p>El unico campo opcional es la imagen del perfil, todos los otros campos son obligatorios. Sin el usuario y la contraseña del administrador no se podra agregar un liquidador</p><h5 id="hecho">@TempData["hecho"]</h5></div>
+    <form action="/Home/ModificarLiquidador" id="formulario" method="post">
+        <div class="margen col-md-10 col-sm-10" id="nombres">
+            <label>Nombres</label>
+            <input type="text" name="nombres" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Nombres)" placeholder="Nombres" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Apellidos</label>
+            <input type="text" name="apellidos" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Apellidos)" placeholder="Apellidos" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-5 col-sm-5">
+            <label>DNI</label>
+            <input type="number" name="dni" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).DNI)" placeholder="DNI" class="margen input" required readonly="readonly"/>
+        </div>
+        <div class="margen col-md-5 col-sm-5">
+            <label>Fecha de Nacimiento</label>
+            <input type="date" name="fechanacimiento" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).FechaNacimiento)" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Nacionalidad</label>
+            <input type="text" name="nacionalidad" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).DNI)" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Provincia</label>
+            <input type="text" name="provincia" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).DNI)" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-5 col-sm-5" id="estadocivil">
+            <label>Estado Civil</label>
+            <select type="text" name="estadocivil" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).EstadoCivil)" class="margen input" required disabled="disabled">
+                <option value="soltero">Soltero</option>
+                <option value="casado">Casado</option>
+            </select>
+        </div>
+        <div class="margen col-md-5 col-sm-5">
+            <label>Direccion</label>
+            <input type="text" name="direccion" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Direccion)" placeholder="Ej. H. Yrigoyen 300" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-5">
+            <label>Mail</label>
+            <input type="email" name="mail" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Mail)" placeholder="Ej. juanperez@hotmail.com" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Nombre de Usuario</label>
+            <input type="text" name="usuario" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Usuario)" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Contraseña</label>
+            <input type="text" name="contraseña" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Contraseña)" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10">
+            <label>Foto de Perfil</label>
+            <input type="text" name="imagen" value="@(((WebApplication16.Models.Liquidador)Session["LiquidadorLogueado"]).Imagen)" class="margen input" required disabled="disabled"/>
+        </div>
+        <div class="margen col-md-10 col-sm-10 col-md-offset-3">
+            <input type="button" value="Editar" class="btn btn-danger inputmitad" align="center" id="modificar">
+        </div>
+        <div class="margen col-md-10 col-sm-10 col-md-offset-3" id="enviar"  hidden>
+            <input type="submit" value="Enviar" class="btn btn-danger inputmitad" align="center"/>
+        </div>
+    </form>
+</div>

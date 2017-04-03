@@ -4,5 +4,98 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DatosOperador</h2>
+<div class="col-md-6 col-sm-10 col-md-offset-3" id="agregaroperador">
+    <div class="margen col-md-12 col-sm-12 row"><div class="margen col-md-10 col-sm-10 row"><h2 class="text-center">Datos Operador</h2>    </div></div>
+    <div class="margen col-md-12 col-sm-12 row"><div class="margen col-md-8 col-sm-8 col-md-offset-1 row text-center"><p>Para modificar los datos del operador presione el boton editar. Para borrar un operador, presione el boton eliminar.</p></div></div>
+        @foreach (WebApplication16.Models.Operadores operadores in ViewBag.Operadores)
+        {
+            <div class="margen col-md-12 col-sm-12 row">
+                <a href="#" class="accordion-titulo"><h4 class="text-left" id="gly"><span class="caret"></span> @operadores.Nombres @operadores.Apellidos</h4></a>
+                <form action="/Home/EliminarOperador" class="accordion-content" method="post" id="@operadores.Usuario" hidden>
+                    <div class="margen col-md-10 col-sm-10" id="nombres">
+                        <label>Nombres</label>
+                        <input type="text" name="nombres" value="@operadores.Nombres" placeholder="Nombres" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10">
+                        <label>Apellidos</label>
+                        <input type="text" name="apellidos" value="@operadores.Apellidos" placeholder="Apellidos" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-5 col-sm-5">
+                        <label>DNI</label>
+                        <input type="number" name="dni" id="documento" value="@operadores.DNI" placeholder="DNI" class="margen input" required readonly="readonly"/>
+                    </div>
+                    <div class="margen col-md-5 col-sm-5">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" name="fechanacimiento" value="@operadores.FechaNacimiento" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10">
+                        <label>Nacionalidad</label>
+                        <input type="text" name="nacionalidad" class="margen input" value="" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10">
+                        <label>Provincia</label>
+                        <input type="text" name="provincia" class="margen input" value="" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-5 col-sm-5" id="estadocivil">
+                        <label>Estado Civil</label>
+                        <select type="text" name="estadocivil" class="margen input" required disabled="disabled">
+                            <option value="soltero">Soltero</option>
+                            <option value="casado">Casado</option>
+                        </select>
+                    </div>
+                    <div class="margen col-md-5 col-sm-5">
+                        <h5 id="error5" hidden></h5>
+                        <label>Direccion</label>
+                        <input type="text" name="direccion" value="@operadores.Direccion" placeholder="Ej. H. Yrigoyen 300" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-5">
+                        <label>Mail</label>
+                        <input type="email" name="mail" value="@operadores.Mail" placeholder="Ej. juanperez@hotmail.com" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" name="usuario" value="@operadores.Usuario" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10">
+                        <label>Contraseña</label>
+                        <input type="text" name="contraseña" value="@operadores.Contraseña" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10">
+                        <label>Foto de Perfil</label>
+                        <input type="text" name="imagen" value="@operadores.Imagen" class="margen input" required disabled="disabled" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10 col-md-offset-2">
+                        <input type="button" value="Editar" class="btn btn-danger editar inputdoble" align="center" id="@operadores.Usuario" /> <input type="button" data-toggle="modal" data-target="#myModal" value="Eliminar" class="btn btn-danger inputdoble" align="center" id="" />
+                    </div>
+                    <div class="margen col-md-10 col-sm-10 col-md-offset-2" hidden>
+                        <input type="submit" value="Enviar" class="btn btn-danger inputmitad" align="center" id="@operadores.Usuario" />
+                    </div>
+
+                    <div id="myModal" class="modal fade" role="dialog" style="display: none;">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content" id="model">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                    <h4 class="modal-title">Confirmar</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Estas por eliminar a un operador ¿Estas seguro?</p>
+                                </div>
+                                <div class="modal-footer" id="model">
+                                    <button type="submit" class="btn btn-default eliminar text-center" align="center" id="@operadores.Usuario">Confirmar</button>
+                                    <button type="button" class="btn btn-default text-center" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+           
+        }
+    </div>
+
 

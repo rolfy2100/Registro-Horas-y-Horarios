@@ -19,7 +19,6 @@
 .tamaño {
     font-size: 25px;
 }
-
 #glyphi{
     text-decoration:none;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -48,6 +47,9 @@ table {
 h1{
     color: white;
 }
+.color{
+   color: #EEE8AA;
+}
 #vista{
     background-color: rgba(0,0,0,0.5);
 }
@@ -58,12 +60,11 @@ h1{
     display: none;
 }
 #error5{
-     font-size: 16px;
+    font-size: 16px;
     color: red;
 }
 .margen{
     margin-bottom: 10px;
-
 }
 .input{
     padding: 4px 8px;
@@ -75,10 +76,18 @@ h1{
 }
 .inputmitad{
     margin-top: 20px;
-     padding: 4px 8px;
+    padding: 4px 8px;
     border-color:rgba(0,0,0,0.4);
     border-radius:1px;
     width:50%;
+    height:40px;
+}
+.inputdoble{
+    margin-top: 20px;
+    padding: 4px 8px;
+    border-color:rgba(0,0,0,0.4);
+    border-radius:1px;
+    width:30%;
     height:40px;
 }
 #agregaroperador{
@@ -86,4 +95,21 @@ h1{
 }
 #crearoperador{
     color: #EEE8AA;
+}
+#agregaroperador a:link{
+    text-decoration: none;
+    color: #EEE8AA;
+}
+#agregaroperador a{
+    color: #EEE8AA;
+}
+#model{
+    color:black;
+    text-align:center;
+}
+#tamaño{
+    font-size:19px;
+}
+#hecho{
+    color: red;
 }

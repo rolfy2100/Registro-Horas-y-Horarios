@@ -51,9 +51,16 @@ namespace WebApplication1.Models
             SqlDataReader reader = sentencia.ExecuteReader();
             if (reader.Read()) //mientras haya un registro para leer
             {
+                liquidador.Nombres = reader["Nombres"].ToString();
+                liquidador.Apellidos = reader["Apellidos"].ToString();
+                liquidador.FechaNacimiento = reader["FechaNacimiento"].ToString();
+                liquidador.EstadoCivil = reader["EstadoCivil"].ToString();
+                liquidador.Direccion = reader["Direccion"].ToString();
+                liquidador.Mail = reader["Mail"].ToString();
+                liquidador.Imagen = reader["Imagen"].ToString();
+                liquidador.DNI = (int)reader["DNI"];
                 liquidador.Usuario = reader["Usuario"].ToString();
                 liquidador.Contraseña = reader["Contraseña"].ToString();
-                liquidador.DNI = (int)reader["DNI"];
             }
             reader.Close();
 
@@ -91,11 +98,38 @@ namespace WebApplication1.Models
                 operadores2.Contraseña = reader["Contraseña"].ToString();
                 operadores.Add(operadores2);
             }
+
+
+
             reader.Close();
 
             conexion.Close();
 
             return operadores;
+        }
+        public void Actualizar(Liquidador liquidador)
+        {
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            //2-nos conectamos
+            conexion.Open();
+            //3-creamos el objeto que nos permite escribir la sentencia
+            SqlCommand sentencia = conexion.CreateCommand();
+            //4-escribrimos la sentencia
+            sentencia.CommandText = "update Liquidador set Nombres = @Nombres, Apellidos = @Apellidos, FechaNacimiento = @FechaNacimiento, EstadoCivil = @EstadoCivil, Direccion = @Direccion, Mail = @Mail, Usuario = @Usuario, Contraseña = @Contraseña, Imagen = @Imagen where DNI = @DNI";
+            sentencia.Parameters.AddWithValue("@Nombres", liquidador.Nombres);
+            sentencia.Parameters.AddWithValue("@Apellidos", liquidador.Apellidos);
+            sentencia.Parameters.AddWithValue("@DNI", liquidador.DNI);
+            sentencia.Parameters.AddWithValue("@FechaNacimiento", liquidador.FechaNacimiento);
+            sentencia.Parameters.AddWithValue("@EstadoCivil", liquidador.EstadoCivil);
+            sentencia.Parameters.AddWithValue("@Direccion", liquidador.Direccion);
+            sentencia.Parameters.AddWithValue("@Mail", liquidador.Mail);
+            sentencia.Parameters.AddWithValue("@Usuario", liquidador.Usuario);
+            sentencia.Parameters.AddWithValue("@Contraseña", liquidador.Contraseña);
+            sentencia.Parameters.AddWithValue("@Imagen", liquidador.Imagen);
+
+            sentencia.ExecuteNonQuery();
+
+            conexion.Close();
         }
     }
 }

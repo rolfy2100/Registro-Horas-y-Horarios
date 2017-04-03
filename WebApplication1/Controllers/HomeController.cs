@@ -23,7 +23,7 @@ namespace WebApplication16.Controllers
             return View("RegistrarLiquidador");
         }
 
-        public ActionResult AgregarLiquidador(string user, string contra, string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
+        public ActionResult AgregarLiquidador(string user, string contra, string nombres, string apellidos, int dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
         {
           
                 if (user == "jefa" && contra == "1234")
@@ -248,7 +248,7 @@ namespace WebApplication16.Controllers
             }
         }
 
-        public ActionResult ConsultarRegLiq(int operador)
+        public ActionResult ConsultarRegLiq(int operador = 1)
         {
             if (Session["LiquidadorLogueado"] == null)
             {
@@ -375,7 +375,7 @@ namespace WebApplication16.Controllers
         }
 
 
-        public ActionResult ConsultarRegLiqMes(string mes, int operador)
+        public ActionResult ConsultarRegLiqMes(string mes = "1", int operador = 1)
         {
             if (Session["LiquidadorLogueado"] == null)
             {
@@ -457,14 +457,61 @@ namespace WebApplication16.Controllers
             }
             
         }
-        public ActionResult ModificarDatos(string nombres, string apellidos, long dni, string fechanacimiento, string estadocivil, string direccion, string mail, string usuario, string contraseña, string imagen)
+        public ActionResult ModificarDatos(string nombres="1", string apellidos = "1", int dni = 1, string fechanacimiento = "1", string estadocivil = "1", string direccion = "1", string mail = "1", string usuario = "1", string contraseña = "1", string imagen = "1")
         {
+            if (Session["LiquidadorLogueado"] != null)
+            {
             //Obtengo operadores para introducirlos en el layout
             LiquidadorManager manager2 = new LiquidadorManager();
             List<Operadores> operadores2 = manager2.Consultar();
             ViewBag.Operadores = operadores2;
 
-            return View();
+
+            Operadores operadores = new Operadores();
+            operadores.Nombres = nombres;
+            operadores.Apellidos = apellidos;
+            operadores.DNI = dni;
+            operadores.FechaNacimiento = fechanacimiento;
+            operadores.EstadoCivil = estadocivil;
+            operadores.Direccion = direccion;
+            operadores.Mail = mail;
+            operadores.Usuario = usuario;
+            operadores.Contraseña = contraseña;
+            operadores.Imagen = imagen;
+            OperadoresManager manager = new OperadoresManager();
+            manager.Actualizar(operadores);
+
+            return RedirectToAction("DatosOperador");
+            }
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+
+        public ActionResult EliminarOperador (int dni = 1)
+        {
+            if (Session["LiquidadorLogueado"] != null)
+            {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
+
+
+                OperadoresManager manager = new OperadoresManager();
+                manager.Eliminar(dni);
+
+
+                return RedirectToAction("DatosOperador");
+             }
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Index", "Home");
+            }
         }
         public ActionResult MisDatos()
         {
@@ -483,14 +530,40 @@ namespace WebApplication16.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        public ActionResult ModificarLiquidador()
+        public ActionResult ModificarLiquidador(string nombres = "1", string apellidos = "1", int dni = 1, string fechanacimiento = "1", string estadocivil = "1", string direccion = "1", string mail = "1", string usuario = "1", string contraseña = "1", string imagen = "1")
         {
-            //Obtengo operadores para introducirlos en el layout
-            LiquidadorManager manager2 = new LiquidadorManager();
-            List<Operadores> operadores2 = manager2.Consultar();
-            ViewBag.Operadores = operadores2;
+            if (Session["LiquidadorLogueado"] != null)
+            {
+                //Obtengo operadores para introducirlos en el layout
+                LiquidadorManager manager2 = new LiquidadorManager();
+                List<Operadores> operadores2 = manager2.Consultar();
+                ViewBag.Operadores = operadores2;
 
-            return View();
+                //Envio a la vista el liquidador
+                ViewBag.liquidador = Session["LiquidadorLogueado"];
+
+                Liquidador liquidador = new Liquidador();
+                liquidador.Nombres = nombres;
+                liquidador.Apellidos = apellidos;
+                liquidador.DNI = dni;
+                liquidador.FechaNacimiento = fechanacimiento;
+                liquidador.EstadoCivil = estadocivil;
+                liquidador.Direccion = direccion;
+                liquidador.Mail = mail;
+                liquidador.Usuario = usuario;
+                liquidador.Contraseña = contraseña;
+                liquidador.Imagen = imagen;
+                LiquidadorManager manager = new LiquidadorManager();
+                manager.Actualizar(liquidador);
+
+                TempData["hecho"] = "Tus datos fueron modificados";
+                return RedirectToAction("MisDatos");
+            }
+            else
+            {
+                TempData["Error4"] = "Necesitas loguearte para acceder a esa pagina";
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

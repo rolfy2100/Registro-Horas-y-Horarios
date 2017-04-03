@@ -118,7 +118,7 @@ namespace WebApplication1.Models
             //3-creamos el objeto que nos permite escribir la sentencia
             SqlCommand sentencia = conexion.CreateCommand();
             //4-escribrimos la sentencia
-            sentencia.CommandText = "update Articulos set (Nombres, Apellidos, DNI, FechaNacimiento, EstadoCivil, Direccion, Mail, Usuario, Contraseña, Imagen) VALUES (@Nombres, @Apellidos, @DNI, @FechaNacimiento, @EstadoCivil, @Direccion, @Mail, @Usuario, @Contraseña, @Imagen)";
+            sentencia.CommandText = "update Operadores set Nombres = @Nombres, Apellidos = @Apellidos, FechaNacimiento = @FechaNacimiento, EstadoCivil = @EstadoCivil, Direccion = @Direccion, Mail = @Mail, Usuario = @Usuario, Contraseña = @Contraseña, Imagen = @Imagen where DNI = @DNI";
             sentencia.Parameters.AddWithValue("@Nombres", operadores.Nombres);
             sentencia.Parameters.AddWithValue("@Apellidos", operadores.Apellidos);
             sentencia.Parameters.AddWithValue("@DNI", operadores.DNI);
@@ -134,7 +134,24 @@ namespace WebApplication1.Models
 
             conexion.Close();
         }
-        //sentencia.CommandText = "update Articulos set Titulo = @Titulo, Texto = @Texto, Imagen = @Imagen, Autor = @Autor WHERE Id = @Id";
 
+        public void Eliminar(int dni)
+        {
+            //1-Conexión.. a qué BBDD
+            SqlConnection conexion = new SqlConnection("Server=DESKTOP-L10RHV9\\SQLEXPRESS;Database=RegistroHorasOperadores;Trusted_Connection=True;");
+            //2-nos conectamos
+            conexion.Open();
+            //3-creamos el objeto que nos permite escribir la sentencia
+            SqlCommand sentencia = conexion.CreateCommand();
+            //4-escribrimos la sentencia
+            sentencia.CommandText = "delete from Operadores where DNI = @DNI";
+            //sentencia.Parameters.AddWithValue("@Fecha", articulo.Fecha);
+            sentencia.Parameters.AddWithValue("@DNI", dni);
+            //5-Ejecutar!
+            sentencia.ExecuteNonQuery();
+
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            conexion.Close();
+        }
     }
 }

@@ -1,4 +1,42 @@
-﻿
+﻿$(".editar").on("click", function (e) {
+    var id = e.target.id;
+
+    var inputs = $("#" + id + " .input");
+    var divs = $("#" + id + " .col-md-10");
+    var dni = $("#" + id + " #documento");
+    var eliminar = $("#" + id + " .eliminar");
+    var form = $("#" + id + "");
+
+    inputs.removeAttr("disabled");
+    dni.attr("disabled", "true");
+    eliminar.hide();
+    inputs.show();
+    divs.show();
+    $(this).parent().hide();
+    form.attr('action', '/Home/ModificarDatos');
+})
+$(".accordion-titulo").click(function () {
+
+    var contenido = $(this).next(".accordion-content");
+    if (contenido.css("display") == "none") { //open		
+        contenido.slideDown(250);
+        $(this).addClass("open");
+    }
+    else { //close		
+        contenido.slideUp(250);
+        $(this).removeClass("open");
+    }
+})
+$(".eliminar").submit("submit", function (e) {
+    var id = e.target.id;
+    var dni = $("#" + id + " #documento");
+    dni.attr("disabled", "false");
+
+    var form = $("#" + id + "");
+})
+
+
+
 function error5() {
     var error5 = document.getElementById("error5").textContent;
     if (error5 != "") {
@@ -13,7 +51,7 @@ $(".desplegar").click(function (e) {
     //Activo el evento submit del form
     document.getElementById(id).submit();
     // ...
-});
+})
 
 opcion = "1";
 $("#buscador").on("change", function () {
@@ -28,9 +66,25 @@ $("#buscador").on("change", function () {
     else {
         $("#mes").hide();
         $("#operador").hide();
+        $("#fechon").show();
         $('#formulario').attr('action', '/Home/ConsultarRegLiqFecha');
     }
 })
+
+
+$("#modificar").on("click", function () {
+    $("#enviar").show();
+    $(this).hide();
+    $("#formulario .input").removeAttr("disabled");
+})
+
+function hecho() {
+    var hecho = document.getElementById("hecho").textContent;
+    if (hecho != "") {
+        $("#hecho").slideUp(10000);
+    }
+}
+hecho();
 
 function error() {
     var error = document.getElementById("error").textContent;
@@ -40,3 +94,6 @@ function error() {
     }
 }
 error();
+
+
+
